@@ -1,0 +1,136 @@
+﻿@model DOOR.Models.Door
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<style>
+    /* Стили для заголовка */
+    h1 {
+        color: #343a40;
+        font-size: 2rem;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    /* Стили для подзаголовка */
+    h3 {
+        color: #6c757d;
+        font-size: 1.2rem;
+        font-weight: normal;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    /* Стили для контейнера данных */
+    .data-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #e9ecef;
+        border-radius: 10px;
+        background-color: #f8f9fa;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Стили для описания свойств */
+    dt {
+        font-weight: bold;
+        color: #007bff;
+    }
+
+    dd {
+        margin-left: 0;
+        color: #343a40;
+    }
+
+    /* Стили для кнопок */
+    .btn-container {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+        border-color: #dc3545;
+        transition: all 0.3s ease;
+    }
+
+    .btn-danger:hover {
+        background-color: #bd2130;
+        border-color: #b02a37;
+    }
+
+    .btn-back {
+        background-color: #6c757d;
+        border-color: #6c757d;
+        color: white;
+        transition: all 0.3s ease;
+    }
+
+    .btn-back:hover {
+        background-color: #5a6268;
+        border-color: #545b62;
+    }
+</style>
+
+<h1>Delete</h1>
+<h3>Are you sure you want to delete this?</h3>
+
+<div class="data-container">
+    <h4 style="font-size: 24px;">Door</h4>
+    
+    <dl class="row">
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Material)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Material)
+        </dd>
+
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt class="col-sm-3">
+            Category
+        </dt>
+        <dd class="col-sm-9">
+            @ViewData["CategoryName"] <!-- Отображение названия категории -->
+        </dd>
+
+        <dt class="col-sm-3">
+            Supplier
+        </dt>
+        <dd class="col-sm-9">
+            @ViewData["SupplierName"] <!-- Отображение названия поставщика -->
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+
+        <div class="btn-container">
+            <input type="submit" value="Delete" class="btn btn-danger" />
+            <a asp-action="Index" class="btn btn-back">Back to List</a>
+        </div>
+    </form>
+</div>

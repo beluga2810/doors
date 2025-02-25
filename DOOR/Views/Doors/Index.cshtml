@@ -1,0 +1,204 @@
+﻿@model IEnumerable<DOOR.Models.Door>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<style>
+
+    h1 {
+        color: #007bff;
+        font-size: 3.5rem;
+        font-weight: bold;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        font-size: 1em;
+        min-width: 600px;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .table thead tr {
+        background-color: #007bff;
+        color: #ffffff;
+        text-align: left;
+    }
+
+    .table th,
+    .table td {
+        padding: 12px 15px;
+    }
+
+    .table tbody tr {
+        border-bottom: 1px solid #dddddd;
+    }
+
+    .table tbody tr:nth-of-type(even) {
+        background-color: #f3f3f3;
+    }
+
+    .table tbody tr:last-of-type {
+        border-bottom: 2px solid #007bff;
+    }
+
+    .table tbody tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    .btn {
+        margin: 2px;
+        transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-dark {
+        background-color: #343a40;
+        border: none;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+    }
+
+    .btn-info {
+        background-color: #17a2b8;
+        border: none;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+        border: none;
+    }
+</style>
+
+
+    <h1>Doors</h1>
+
+    <p>
+        <a asp-action="Create" class="btn btn-dark mt-2">
+            <i class="fas fa-plus"></i> Create New
+        </a>
+    </p>
+
+<div class="class=" table-responsive" style="max-width: 3000px; margin: 0 auto;">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Name)</th>
+                    <th>@Html.DisplayNameFor(model => model.Material)</th>
+                    <th>@Html.DisplayNameFor(model => model.Price)</th>
+                    <th>@Html.DisplayNameFor(model => model.Description)</th>
+                    <th>@Html.DisplayNameFor(model => model.Category)</th>
+                    <th>@Html.DisplayNameFor(model => model.Supplier)</th>
+                    <th></th>
+                </tr>
+            </thead>
+           
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Material)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Price)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Category.Name)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Supplier.Name)</td>
+                        <td>
+                            <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.Id">
+                                <i class="fas fa-edit"></i> Edit
+                            </a>
+                            <a asp-action="Details" class="btn btn-info" asp-route-id="@item.Id">
+                                <i class="fas fa-info-circle"></i> Details
+                            </a>
+                            <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id">
+                                <i class="fas fa-trash"></i> Delete
+                            </a>
+                        </td>
+                    </tr>
+                }
+            
+        </table>
+    </div>
+
+
+
+
+@* @model IEnumerable<DOOR.Models.Door>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Doors</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-dark mt-2">Create New</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Material)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Supplier)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Material)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Supplier.Name)
+                </td>
+                <td>
+                    <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.Id">Edit</a>
+                    <a asp-action="Details" class="btn btn-info" asp-route-id="@item.Id">Details</a>
+                    <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table> *@

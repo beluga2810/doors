@@ -1,0 +1,73 @@
+﻿@model IEnumerable<DOOR.Models.Order>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Orders</h1>
+
+<div class=""><p>Заказы за определенный срок</p></div>
+<form asp-action="GetOrdersByDateRange" method="get" class="d-flex">
+    <div class="form-group">
+        <label for="startDate">Start Date:</label>
+        <input type="date" name="startDate" class="form-control" required>
+    </div>
+    <div class="form-group ms-2">
+        <label for="endDate">End Date:</label>
+        <input type="date" name="endDate" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-primary ms-2">Get</button>
+</form>
+
+<p>
+    <a asp-action="Create" class="btn btn-dark mt-2">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerContactInfo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AdditionalProperties)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Door)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerContactInfo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AdditionalProperties)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Customer.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Door.Name)
+                </td>
+                <td>
+                    <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.Id">Edit</a>
+                    <a asp-action="Details" class="btn btn-info" asp-route-id="@item.Id">Details</a>
+                    <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

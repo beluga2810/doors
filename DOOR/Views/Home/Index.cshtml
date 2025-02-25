@@ -1,0 +1,45 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Двери вашего дома</h1>
+    <p class="lead">Надежность, стиль и комфорт в каждой детали</p>
+</div>
+<div class="row mt-5">
+    <div class="col-md-4 text-center">
+        <h3>Качество</h3>
+        <p>Мы используем только лучшие материалы.</p>
+    </div>
+    <div class="col-md-4 text-center">
+        <h3>Доставка</h3>
+        <p>Быстрая доставка по всей Беларуси.</p>
+    </div>
+    <div class="col-md-4 text-center">
+        <h3>Гарантия</h3>
+        <p>Гарантия на всю продукцию — 5 лет.</p>
+    </div>
+</div>
+<div class="text-center">
+    <img id="myImage" src="./img/1.jpg" style="width: 200px" />
+</div>
+<div class="text-center mt-4">
+    <a href="/Doors" class="btn btn-primary btn-lg shadow">
+        Посмотреть каталог
+    </a>
+    <a href="/Contact" class="btn btn-outline-secondary btn-lg ml-3 shadow">
+        Связаться с нами
+    </a>
+</div>
+<script>
+    var image = document.getElementById("myImage");
+
+    image.onmouseover = function () {
+        image.src = "./img/2.jpg";
+    };
+
+    image.onmouseout = function () {
+        image.src = "./img/1.jpg";
+    };
+
+</script>

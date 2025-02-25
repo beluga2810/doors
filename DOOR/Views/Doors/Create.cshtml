@@ -1,0 +1,166 @@
+﻿@model DOOR.Models.Door
+@{
+    ViewData["Title"] = "Create";
+}
+
+<style>
+    /* Стили для заголовка */
+    h1 {
+        color: #343a40;
+        font-size: 2rem;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    /* Стили для подзаголовка */
+    h4 {
+        color: #6c757d;
+        font-size: 1.2rem;
+        font-weight: normal;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    /* Стили для формы */
+    .form-container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #e9ecef;
+        border-radius: 10px;
+        background-color: #f8f9fa;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Стили для полей ввода */
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    label {
+        font-weight: bold;
+        color: #007bff;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    input.form-control,
+    select.form-control {
+        width: 100%;
+        padding: 10px;
+        font-size: 1rem;
+        border: 1px solid #ced4da;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+    }
+
+        input.form-control:focus,
+        select.form-control:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+
+    /* Стили для кнопок */
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+        padding: 10px 20px;
+        font-size: 1rem;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+    }
+
+        .btn-primary:hover {
+            background-color: #0069d9;
+            border-color: #0062cc;
+        }
+
+    /* Стили для ссылки "Back to List" */
+    .btn-back {
+        background-color: #6c757d;
+        border-color: #6c757d;
+        color: white;
+        padding: 10px 20px;
+        font-size: 1rem;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+        margin-top: 15px;
+    }
+
+        .btn-back:hover {
+            background-color: #5a6268;
+            border-color: #545b62;
+        }
+
+    /* Стили для сообщений об ошибках */
+    .text-danger {
+        color: #dc3545;
+        font-size: 0.9rem;
+        margin-top: 5px;
+    }
+</style>
+
+<h1>Create</h1>
+
+
+
+<div class="form-container">
+    <h4 style="font-size: 24px;">Door</h4>
+    <form asp-action="Create">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="form-group">
+            <label asp-for="Name" class="control-label"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Material" class="control-label"></label>
+            <input asp-for="Material" class="form-control" />
+            <span asp-validation-for="Material" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Price" class="control-label"></label>
+            <input asp-for="Price" class="form-control" />
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Description" class="control-label"></label>
+            <input asp-for="Description" class="form-control" />
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Category" class="control-label"></label>
+            <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
+            <span asp-validation-for="CategoryId" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Supplier" class="control-label"></label>
+            <select asp-for="SupplierId" class="form-control" asp-items="ViewBag.SupplierId"></select>
+            <span asp-validation-for="SupplierId" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
+        <div>
+            <a asp-action="Index" class="btn-back">Back to List</a>
+        </div>
+    </form>
+</div>
+
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

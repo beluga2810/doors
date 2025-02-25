@@ -1,0 +1,102 @@
+﻿@model IEnumerable<DOOR.Models.Employee>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Employee</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-dark mt-2">Create New</a>
+</p>
+
+<form asp-action="GetServiceByEmployeeName" method="get" class="d-flex">
+    <select name="eName" class="form-control">
+        <option value="">Выберите работника</option>
+        @foreach (var employee in Model)
+        {
+            <option value="@employee.Name">@employee.Name</option>
+        }
+    </select>
+    <button type="submit" class="btn btn-primary ms-2">Get</button>
+</form>
+
+@if (ViewBag.Services != null)
+{
+    <table class="table mt-2">
+        <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                   Description 
+                </th>
+                <th>
+                   Price 
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var service in ViewBag.Services)
+            {
+                <tr>
+                    <td>
+                        @service.Name
+                    </td>
+                    <td>
+                        @service.Description
+                    </td>
+                    <td>
+                        
+                        @Math.Round(service.Price)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Position)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Salary)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Department)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Position)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Salary)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Department.Name)
+                </td>
+                <td>
+                    <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.Id">Edit</a>
+                    <a asp-action="Details" class="btn btn-info" asp-route-id="@item.Id">Details</a>
+                    <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
