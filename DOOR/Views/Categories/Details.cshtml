@@ -1,24 +1,113 @@
 ﻿@model DOOR.Models.Category
-
 @{
     ViewData["Title"] = "Details";
 }
 
+<style>
+    /* Стили для заголовка */
+    h1 {
+        color: #343a40;
+        font-size: 2rem;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    /* Стили для подзаголовка */
+    h4 {
+        color: #6c757d;
+        font-size: 1.2rem;
+        font-weight: normal;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    /* Стили для контейнера данных */
+    .data-container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #e9ecef;
+        border-radius: 10px;
+        background-color: #f8f9fa;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Стили для описания свойств */
+    dt {
+        font-weight: bold;
+        color: #007bff;
+    }
+
+    dd {
+        margin-left: 0;
+        color: #343a40;
+    }
+
+    /* Контейнер для кнопок */
+    .btn-container {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+    }
+
+    /* Стиль для кнопки "Edit" */
+    .btn-primary {
+        background-color: #007bff; /* Синий цвет */
+        border-color: #007bff;
+        padding: 10px 20px;
+        font-size: 1rem;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+    }
+
+        .btn-primary:hover {
+            background-color: #0069d9; /* Темнее при наведении */
+            border-color: #0062cc;
+        }
+
+    /* Стиль для кнопки "Back to List" */
+    .btn-back {
+        background-color: #343a40; /* Темно-серый цвет */
+        border-color: #343a40;
+        color: white;
+        padding: 10px 20px;
+        font-size: 1rem;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+        .btn-back:hover {
+            background-color: #23272b; /* Темнее при наведении */
+            border-color: #1d2124;
+        }
+
+    /* Стили для разделителя */
+    hr {
+        border-top: 1px solid #dee2e6;
+        margin: 20px 0;
+    }
+</style>
+
 <h1>Details</h1>
 
-<div>
-    <h4>Category</h4>
+<div class="data-container">
+    <h4 style="font-size: 24px;">Category</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-3">
             @Html.DisplayNameFor(model => model.Name)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-9">
             @Html.DisplayFor(model => model.Name)
         </dd>
     </dl>
-</div>
-<div>
-    <a asp-action="Edit" class="btn" asp-route-id="@Model?.Id">Edit</a>
-    <a asp-action="Index" class="btn btn-dark">Back to List</a>
+
+    <!-- Контейнер для кнопок -->
+    <div class="btn-container">
+        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary">Edit</a>
+        <a asp-action="Index" class="btn-back">Back to List</a>
+    </div>
 </div>
