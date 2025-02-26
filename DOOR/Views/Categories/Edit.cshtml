@@ -4,7 +4,7 @@
 }
 
 <style>
-    /* Стили для заголовка */
+
     h1 {
         color: #343a40;
         font-size: 2rem;
@@ -13,7 +13,7 @@
         margin-bottom: 20px;
     }
 
-    /* Стили для подзаголовка */
+
     h4 {
         color: #6c757d;
         font-size: 1.2rem;
@@ -22,7 +22,7 @@
         margin-bottom: 20px;
     }
 
-    /* Стили для формы */
+
     .form-container {
         max-width: 600px;
         margin: 0 auto;
@@ -33,7 +33,7 @@
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
-    /* Стили для полей ввода */
+
     .form-group {
         margin-bottom: 15px;
     }
@@ -45,7 +45,8 @@
         margin-bottom: 5px;
     }
 
-    input.form-control {
+    input.form-control,
+    select.form-control {
         width: 100%;
         padding: 10px;
         font-size: 1rem;
@@ -54,12 +55,13 @@
         transition: all 0.3s ease;
     }
 
-        input.form-control:focus {
+        input.form-control:focus,
+        select.form-control:focus {
             border-color: #007bff;
             box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
         }
 
-    /* Стили для кнопок */
+
     .btn-primary {
         background-color: #007bff;
         border-color: #007bff;
@@ -74,10 +76,10 @@
             border-color: #0062cc;
         }
 
-    /* Стиль для кнопки "Back to List" */
+
     .btn-back {
-        background-color: #343a40; /* Темно-серый цвет */
-        border-color: #343a40;
+        background-color: #6c757d;
+        border-color: #6c757d;
         color: white;
         padding: 10px 20px;
         font-size: 1rem;
@@ -85,22 +87,21 @@
         transition: all 0.3s ease;
         text-decoration: none;
         display: inline-block;
-        margin-top: 15px;
     }
 
         .btn-back:hover {
-            background-color: #23272b; /* Темнее при наведении */
-            border-color: #1d2124;
+            background-color: #5a6268;
+            border-color: #545b62;
         }
 
-    /* Контейнер для кнопок */
+
     .btn-container {
         display: flex;
         justify-content: space-between;
         margin-top: 20px;
     }
 
-    /* Стили для сообщений об ошибках */
+
     .text-danger {
         color: #dc3545;
         font-size: 0.9rem;
@@ -110,10 +111,10 @@
 
 <h1>Edit</h1>
 
-<hr />
+
 
 <div class="form-container">
-    <h4 style="font-size: 24px;">Category</h4>
+    <h4 style="font-size: 24px; color: #000; text-align: center;">Category</h4>
     <form asp-action="Edit">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <input type="hidden" asp-for="Id" />
@@ -124,7 +125,6 @@
             <span asp-validation-for="Name" class="text-danger"></span>
         </div>
 
-        <!-- Контейнер для кнопок -->
         <div class="btn-container">
             <input type="submit" value="Save" class="btn btn-primary" />
             <a asp-action="Index" class="btn-back">Back to List</a>

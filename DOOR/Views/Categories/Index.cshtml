@@ -4,16 +4,16 @@
 }
 
 <style>
-    /* Стили для заголовка */
+   
     h1 {
-        color: #343a40;
-        font-size: 2rem;
+        color: #007bff;
+        font-size: 3.5rem;
         font-weight: bold;
-        text-align: center;
         margin-bottom: 20px;
+        text-align: center;
     }
 
-    /* Стили для кнопки "Create New" */
+    
     .btn-dark {
         background-color: #343a40;
         border-color: #343a40;
@@ -28,7 +28,7 @@
             border-color: #1d2124;
         }
 
-    /* Стили для формы выбора категории */
+    
     form.d-flex {
         display: flex;
         align-items: center;
@@ -64,7 +64,7 @@
             border-color: #0062cc;
         }
 
-    /* Стили для таблицы */
+   
     table.table {
         width: 100%;
         border-collapse: collapse;
@@ -102,7 +102,7 @@
                 background-color: #f1f1f1;
             }
 
-    /* Стили для кнопок в таблице */
+  
     .btn {
         margin: 2px;
         transition: all 0.3s ease;
@@ -123,10 +123,22 @@
         border: none;
     }
 
-    .btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    .btn-dark {
+        background-color: #343a40;
+        border-color: #343a40;
+        padding: 10px 20px;
+        font-size: 1rem;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
+
+        .btn-dark:hover {
+            background-color: #23272b;
+            border-color: #1d2124;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
 </style>
 
 <h1>Category</h1>

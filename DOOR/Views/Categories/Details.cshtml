@@ -4,7 +4,7 @@
 }
 
 <style>
-    /* Стили для заголовка */
+    
     h1 {
         color: #343a40;
         font-size: 2rem;
@@ -13,7 +13,7 @@
         margin-bottom: 20px;
     }
 
-    /* Стили для подзаголовка */
+   
     h4 {
         color: #6c757d;
         font-size: 1.2rem;
@@ -22,7 +22,7 @@
         margin-bottom: 20px;
     }
 
-    /* Стили для контейнера данных */
+    
     .data-container {
         max-width: 600px;
         margin: 0 auto;
@@ -33,7 +33,7 @@
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
-    /* Стили для описания свойств */
+    
     dt {
         font-weight: bold;
         color: #007bff;
@@ -44,16 +44,16 @@
         color: #343a40;
     }
 
-    /* Контейнер для кнопок */
+    
     .btn-container {
         display: flex;
         justify-content: space-between;
         margin-top: 20px;
     }
 
-    /* Стиль для кнопки "Edit" */
+    
     .btn-primary {
-        background-color: #007bff; /* Синий цвет */
+        background-color: #007bff;
         border-color: #007bff;
         padding: 10px 20px;
         font-size: 1rem;
@@ -62,13 +62,13 @@
     }
 
         .btn-primary:hover {
-            background-color: #0069d9; /* Темнее при наведении */
+            background-color: #0069d9; 
             border-color: #0062cc;
         }
 
-    /* Стиль для кнопки "Back to List" */
+    
     .btn-back {
-        background-color: #343a40; /* Темно-серый цвет */
+        background-color: #343a40; 
         border-color: #343a40;
         color: white;
         padding: 10px 20px;
@@ -80,11 +80,11 @@
     }
 
         .btn-back:hover {
-            background-color: #23272b; /* Темнее при наведении */
+            background-color: #23272b; 
             border-color: #1d2124;
         }
 
-    /* Стили для разделителя */
+    
     hr {
         border-top: 1px solid #dee2e6;
         margin: 20px 0;
@@ -94,7 +94,7 @@
 <h1>Details</h1>
 
 <div class="data-container">
-    <h4 style="font-size: 24px;">Category</h4>
+    <h4 style="font-size: 24px; color: #000; text-align: center;">Category</h4>
     <hr />
     <dl class="row">
         <dt class="col-sm-3">
@@ -105,7 +105,7 @@
         </dd>
     </dl>
 
-    <!-- Контейнер для кнопок -->
+   
     <div class="btn-container">
         <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary">Edit</a>
         <a asp-action="Index" class="btn-back">Back to List</a>
