@@ -1,12 +1,170 @@
 ﻿@model IEnumerable<DOOR.Models.Order>
-
 @{
     ViewData["Title"] = "Index";
 }
 
+<style>
+    
+    h1 {
+        color: #007bff;
+        text-align: center;
+        font-size: 3.5rem;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .description {
+        color: #000;
+        font-size: 2rem; 
+        font-weight: normal;
+        text-align: left; 
+        margin-bottom: 20px;
+    }
+
+   
+    form.d-flex {
+        display: flex;
+        align-items: flex-end;
+        margin-bottom: 20px;
+    }
+
+    .form-group {
+        margin-right: 10px;
+    }
+
+    label {
+        font-weight: bold;
+        color: #007bff;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    input.form-control {
+        width: 100%;
+        padding: 10px;
+        font-size: 1rem;
+        border: 1px solid #ced4da;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+    }
+
+        input.form-control:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+
+    button.btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+        color: white;
+        padding: 10px 20px;
+        font-size: 1rem;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+        button.btn-primary:hover {
+            background-color: #0069d9;
+            border-color: #0062cc;
+        }
+
+    
+    .create-button {
+        display: inline-block;
+        margin-left: 0; 
+        margin-bottom: 20px; 
+    }
+
+    .btn-dark {
+        background-color: #343a40;
+        border-color: #343a40;
+        padding: 10px 20px;
+        font-size: 1rem;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+        .btn-dark:hover {
+            background-color: #23272b;
+            border-color: #1d2124;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        font-size: 1rem;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+        .table thead tr {
+            background-color: #007bff;
+            color: #ffffff;
+            text-align: left;
+        }
+
+        .table th,
+        .table td {
+            padding: 12px 15px;
+        }
+
+        .table tbody tr {
+            border-bottom: 1px solid #dddddd;
+        }
+
+            .table tbody tr:nth-of-type(even) {
+                background-color: #f3f3f3;
+            }
+
+            .table tbody tr:last-of-type {
+                border-bottom: 2px solid #007bff;
+            }
+
+            .table tbody tr:hover {
+                background-color: #f1f1f1;
+            }
+
+    .btn {
+        margin: 2px;
+        transition: all 0.3s ease;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+    }
+
+    .btn-info {
+        background-color: #17a2b8;
+        border: none;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+        border: none;
+    }
+
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+</style>
+
 <h1>Orders</h1>
 
-<div class=""><p>Заказы за определенный срок</p></div>
+
+<div class="description">
+    <p>Заказы за определенный срок</p>
+</div>
+
 <form asp-action="GetOrdersByDateRange" method="get" class="d-flex">
     <div class="form-group">
         <label for="startDate">Start Date:</label>
@@ -19,27 +177,19 @@
     <button type="submit" class="btn btn-primary ms-2">Get</button>
 </form>
 
-<p>
-    <a asp-action="Create" class="btn btn-dark mt-2">Create New</a>
+
+<p class="create-button">
+    <a asp-action="Create" class="btn btn-dark">Create New</a>
 </p>
+
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.OrderDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CustomerContactInfo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AdditionalProperties)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Customer)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Door)
-            </th>
+            <th>@Html.DisplayNameFor(model => model.OrderDate)</th>
+            <th>@Html.DisplayNameFor(model => model.CustomerContactInfo)</th>
+            <th>@Html.DisplayNameFor(model => model.AdditionalProperties)</th>
+            <th>@Html.DisplayNameFor(model => model.Customer)</th>
+            <th>@Html.DisplayNameFor(model => model.Door)</th>
             <th></th>
         </tr>
     </thead>
@@ -47,21 +197,11 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.OrderDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CustomerContactInfo)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.AdditionalProperties)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Customer.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Door.Name)
-                </td>
+                <td>@Html.DisplayFor(modelItem => item.OrderDate)</td>
+                <td>@Html.DisplayFor(modelItem => item.CustomerContactInfo)</td>
+                <td>@Html.DisplayFor(modelItem => item.AdditionalProperties)</td>
+                <td>@Html.DisplayFor(modelItem => item.Customer.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.Door.Name)</td>
                 <td>
                     <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.Id">Edit</a>
                     <a asp-action="Details" class="btn btn-info" asp-route-id="@item.Id">Details</a>

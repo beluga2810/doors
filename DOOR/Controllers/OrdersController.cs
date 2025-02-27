@@ -55,8 +55,8 @@ namespace DOOR.Controllers
 
         public IActionResult Create()
         {
-            ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Id");
-            ViewData["DoorId"] = new SelectList(_context.Doors, "Id", "Id");
+            ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Name");
+            ViewData["DoorId"] = new SelectList(_context.Doors, "Id", "Name");
             return View();
         }
 
@@ -66,8 +66,8 @@ namespace DOOR.Controllers
         {
             _context.Add(order);
             await _context.SaveChangesAsync();
-            ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Id", order.CustomerId);
-            ViewData["DoorId"] = new SelectList(_context.Doors, "Id", "Id", order.DoorId);
+            ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Name", order.CustomerId);
+            ViewData["DoorId"] = new SelectList(_context.Doors, "Id", "Name", order.DoorId);
             return View(order);
         }
 
@@ -83,8 +83,8 @@ namespace DOOR.Controllers
             {
                 return NotFound();
             }
-            ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Id", order.CustomerId);
-            ViewData["DoorId"] = new SelectList(_context.Doors, "Id", "Id", order.DoorId);
+            ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Name", order.CustomerId);
+            ViewData["DoorId"] = new SelectList(_context.Doors, "Id", "Name", order.DoorId);
             return View(order);
         }
 
@@ -113,8 +113,8 @@ namespace DOOR.Controllers
                     throw;
                 }
             }
-            ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Id", order.CustomerId);
-            ViewData["DoorId"] = new SelectList(_context.Doors, "Id", "Id", order.DoorId);
+            ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Name", order.CustomerId);
+            ViewData["DoorId"] = new SelectList(_context.Doors, "Id", "Name", order.DoorId);
             return View(order);
         }
 
