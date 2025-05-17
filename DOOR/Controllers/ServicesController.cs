@@ -47,8 +47,8 @@ namespace DOOR.Controllers
 
         public IActionResult Create()
         {
-            ViewData["DoorId"] = new SelectList(_context.Doors, "Id", "Id");
-            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Id");
+            ViewData["DoorId"] = new SelectList(_context.Doors, "Id", "Name");
+            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Name");
             return View();
         }
 
@@ -58,8 +58,8 @@ namespace DOOR.Controllers
         {
             _context.Add(service);
             await _context.SaveChangesAsync();
-            ViewData["DoorId"] = new SelectList(_context.Doors, "Id", "Id", service.DoorId);
-            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Id", service.EmployeeId);
+            ViewData["DoorId"] = new SelectList(_context.Doors, "Id", "Name", service.DoorId);
+            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Name", service.EmployeeId);
             return View(service);
         }
 
@@ -75,8 +75,8 @@ namespace DOOR.Controllers
             {
                 return NotFound();
             }
-            ViewData["DoorId"] = new SelectList(_context.Doors, "Id", "Id", service.DoorId);
-            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Id", service.EmployeeId);
+            ViewData["DoorId"] = new SelectList(_context.Doors, "Id", "Name", service.DoorId);
+            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Name", service.EmployeeId);
             return View(service);
         }
 
@@ -105,8 +105,8 @@ namespace DOOR.Controllers
                     throw;
                 }
             }
-            ViewData["DoorId"] = new SelectList(_context.Doors, "Id", "Id", service.DoorId);
-            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Id", service.EmployeeId);
+            ViewData["DoorId"] = new SelectList(_context.Doors, "Id", "Name", service.DoorId);
+            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Name", service.EmployeeId);
             return View(service);
         }
 

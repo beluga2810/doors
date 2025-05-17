@@ -4,45 +4,138 @@
     ViewData["Title"] = "Details";
 }
 
+<style>
+    h1 {
+        color: #343a40;
+        font-size: 2rem;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    h4 {
+        color: #6c757d;
+        font-size: 1.5rem;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .details-container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #e9ecef;
+        border-radius: 10px;
+        background-color: #f8f9fa;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    a.control-label {
+        font-weight: bold;
+        color: #007bff;
+        display: block;
+        margin-bottom: 5px;
+        text-decoration: none;
+    }
+    dl.row {
+        margin: 0;
+    }
+
+    dt.col-sm-2 {
+        font-weight: bold;
+        color: #007bff;
+        padding: 10px 0;
+    }
+
+    dd.col-sm-10 {
+        padding: 10px 0;
+        color: #343a40;
+        border-bottom: 1px solid #e9ecef;
+    }
+
+    .btn-edit {
+        background-color: #007bff;
+        border-color: #007bff;
+        color: white;
+        padding: 10px 20px;
+        font-size: 1rem;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+        .btn-edit:hover {
+            background-color: #0069d9;
+            border-color: #0062cc;
+            color: white;
+        }
+
+    .btn-back {
+        background-color: #6c757d;
+        border-color: #6c757d;
+        color: white;
+        padding: 10px 20px;
+        font-size: 1rem;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+        .btn-back:hover {
+            background-color: #5a6268;
+            border-color: #545b62;
+            color: white;
+        }
+
+    .btn-container {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+    }
+</style>
+
 <h1>Details</h1>
 
-<div>
-    <h4>Service</h4>
-    <hr />
+<div class="details-container">
+   
+    <h4 style="font-size: 24px; color: #000; text-align: center;">Service</h4>
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Name)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Name)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
+        <dt class="col-sm-2">
+            <a class="control-label">Service Status </a>
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Description)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Price)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Price)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Employee)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Employee.Id)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Employee.Name)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Door)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Door.Id)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Door.Name)
         </dd>
     </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a>
-    <a asp-action="Index">Back to List</a>
+
+    <div class="btn-container">
+        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn-edit">Edit</a>
+        <a asp-action="Index" class="btn-back">Back to List</a>
+    </div>
 </div>
