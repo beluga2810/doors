@@ -138,6 +138,10 @@
         transform: translateY(-2px);
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
+
+    .col-md-2{
+
+    }
 </style>
 
 <h1>Service</h1>
@@ -186,7 +190,38 @@
                         <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id">Delete</a>
                     </td>
                 </tr>
+
             }
         </tbody>
     </table>
 </div>
+
+<form method="get" action="@Url.Action("GeneratePdfReport", "Services")" class="mb-4">
+    <div class="row g-3">
+        <div class="col-md-6">
+            <select name="employeeId" class="form-select">
+                <option value="">All Employees</option>
+                @foreach (var employee in ViewBag.Employees as List<Employee>)
+                {
+                    <option value="@employee.Id">@employee.Name</option>
+                }
+            </select>
+        </div>
+        <div class="col-md-6">
+            <select name="doorId" class="form-select">
+                <option value="">All Doors</option>
+                @foreach (var door in ViewBag.Doors as List<Door>)
+                {
+                    <option value="@door.Id">@door.Name</option>
+                }
+            </select>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-12 text-center">
+            <button type="submit" class="btn btn-primary" style="width: auto; min-width: 200px;">
+                <i class="bi bi-file-earmark-pdf"></i> Generate Report
+            </button>
+        </div>
+    </div>
+</form>

@@ -1,4 +1,5 @@
-﻿@model IEnumerable<DOOR.Models.Employee>
+﻿
+@model IEnumerable<DOOR.Models.Employee>
 
 @{
     ViewData["Title"] = "Index";
@@ -195,3 +196,15 @@
         }
     </tbody>
 </table>
+@* <form method="get" action="@Url.Action("GeneratePdfReport", "Employees")">
+    <select name="departmentId" class="form-select">
+        <option value="">All Departments</option>
+        @foreach (var department in ViewBag.Departments as List<Department>)
+        {
+            <option value="@department.Id">@department.Name</option>
+        }
+    </select>
+    <button type="submit" class="btn btn-primary">
+        Generate Report
+    </button>
+</form> *@

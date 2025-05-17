@@ -7,6 +7,13 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DOOR.Data;
 using DOOR.Models;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Element;
+using iText.Layout.Properties;
+using iText.Kernel.Font;
+
 
 namespace DOOR.Controllers
 {
@@ -20,8 +27,9 @@ namespace DOOR.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var appDbContext = _context.Employees.Include(e => e.Department);
-            return View(await appDbContext.ToListAsync());
+            var appDBContext = _context.Employees.Include(e => e.Department);
+            ViewBag.Departments = await _context.Departments.ToListAsync();
+            return View(await appDBContext.ToListAsync());
         }
         public async Task<IActionResult> GetServiceByEmployeeName(string eName)
         {
@@ -154,5 +162,47 @@ namespace DOOR.Controllers
         {
             return (_context.Employees?.Any(e => e.Id == id)).GetValueOrDefault();
         }
+        //public async Task<IActionResult> GeneratePdfReport(int? departmentId)
+        //{
+        //    var employeesQuery = _context.Employees.Include(e => e.Department).AsQueryable();
+
+        //    if (departmentId.HasValue)
+        //    {
+        //        employeesQuery = employeesQuery.Where(e => e.DepartmentId == departmentId.Value);
+        //    }
+
+        //    var employees = await employeesQuery.ToListAsync();
+
+        //    using var stream = new MemoryStream();
+        //    var pdfWriter = new PdfWriter(stream);
+        //    var pdfDocument = new PdfDocument(pdfWriter);
+        //    var document = new Document(pdfDocument);
+        //    var font = PdfFontFactory.CreateFont("C:\\Windows\\Fonts\\arial.ttf", "Identity-H");
+        //    document.SetFont(font);
+        //    document.Add(new Paragraph("Employee Report")
+        //        .SetTextAlignment(TextAlignment.CENTER).SetFontSize(20));
+
+        //    var table = new iText.Layout.Element.Table(5, true);
+
+        //    table.AddHeaderCell("ID");
+        //    table.AddHeaderCell("Name");
+        //    table.AddHeaderCell("Position");
+        //    table.AddHeaderCell("Salary");
+        //    table.AddHeaderCell("Department");
+
+        //    foreach (var employee in employees)
+        //    {
+        //        table.AddCell(employee.Id.ToString());
+        //        table.AddCell(employee.Name.ToString());
+        //        table.AddCell(employee.Position.ToString());
+        //        table.AddCell(employee.Salary.ToString("C"));
+        //        table.AddCell(employee.Department?.Name.ToString() ?? "N/A");
+        //    }
+
+        //    document.Add(table);
+        //    document.Close();
+
+        //    return File(stream.ToArray(), "application/pdf", "EmployeeReport.pdf");
+        //}
     }
-}
+    }
