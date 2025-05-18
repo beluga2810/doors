@@ -11,7 +11,7 @@ using System.Security.Cryptography;
 
 namespace DOOR.Controllers
 {
-    public class CategoriesController : Controller
+    public class CategoriesController : BaseController 
     {
         private readonly AppDbContext _context;
 

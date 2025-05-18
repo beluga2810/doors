@@ -10,7 +10,7 @@ using DOOR.Models;
 
 namespace DOOR.Controllers
 {
-    public class CustomersController : Controller
+    public class CustomersController : BaseController
     {
         private readonly AppDbContext _context;
 
