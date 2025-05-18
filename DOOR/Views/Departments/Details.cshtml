@@ -112,28 +112,28 @@
     }
 </style>
 
-<h1>Details</h1>
+<h1>Детали</h1>
 
 <div class="data-container">
-    <h4 style="font-size: 24px; color: #000; text-align: center;">Department</h4>
+    <h4 style="font-size: 24px; color: #000; text-align: center;">Точки продаж</h4>
    
 
    
     <dl class="row">
         <dt class="col-sm-3">
-            @Html.DisplayNameFor(model => model.Name)
+            <th>Название</th>
         </dt>
         <dd class="col-sm-9">
             @Html.DisplayFor(model => model.Name)
         </dd>
         <dt class="col-sm-3">
-            @Html.DisplayNameFor(model => model.Location)
+            <th>Местоположение</th>
         </dt>
         <dd class="col-sm-9">
             @Html.DisplayFor(model => model.Location)
         </dd>
     </dl>
-    <h4 style="font-size: 24px; color: #000; text-align: center;">Employees</h4>
+    <h4 style="font-size: 24px; color: #000; text-align: center;">Сотрудники</h4>
 
     <div class="employees-section">
         <hr />
@@ -144,13 +144,13 @@
                 {
                     <div class="employee-item row">
                         <dt class="col-sm-3">
-                            Name:
+                            Имя:
                         </dt>
                         <dd class="col-sm-9">
                             @employee.Name
                         </dd>
                         <dt class="col-sm-3">
-                            Position:
+                            Должность:
                         </dt>
                         <dd class="col-sm-9">
                             @employee.Position
@@ -161,7 +161,7 @@
             else
             {
                 <p style="text-align: center; color: #6c757d;">
-                    No employees assigned to this department.
+                    В этом отделе нет сотрудников.
                 </p>
             }
         </div>
@@ -169,7 +169,7 @@
 
    
     <div class="btn-container">
-        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary">Edit</a>
-        <a asp-action="Index" class="btn-back">Back to List</a>
+        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary">Изменить</a>
+        <a asp-action="Index" class="btn-back">Вернуться назад</a>
     </div>
 </div>

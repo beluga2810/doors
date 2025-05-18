@@ -85,23 +85,29 @@
         }
 </style>
 
-<h1>Details</h1>
+<h1>Детали</h1>
 
 <div class="data-container">
-    <h4 style="font-size: 24px; color: #000;">Order</h4>
+    <h4 style="font-size: 24px; color: #000;">Заказы</h4>
     
     <dl class="row">
         
         <dt class="col-sm-3">
-            @Html.DisplayNameFor(model => model.OrderDate)
+            <th>Дата заказа</th>
         </dt>
         <dd class="col-sm-9">
             @Html.DisplayFor(model => model.OrderDate)
         </dd>
 
+        <dt class="col-sm-3">
+            <th>Имя заказчика</th>
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Customer.Name)
+        </dd>
       
         <dt class="col-sm-3">
-            @Html.DisplayNameFor(model => model.CustomerContactInfo)
+            <th>Контактные данные</th>
         </dt>
         <dd class="col-sm-9">
             @Html.DisplayFor(model => model.CustomerContactInfo)
@@ -109,23 +115,16 @@
 
         
         <dt class="col-sm-3">
-            @Html.DisplayNameFor(model => model.AdditionalProperties)
+            <th>Личные предпочтения</th>
         </dt>
         <dd class="col-sm-9">
             @Html.DisplayFor(model => model.AdditionalProperties)
         </dd>
 
-       
-        <dt class="col-sm-3">
-            @Html.DisplayNameFor(model => model.Customer)
-        </dt>
-        <dd class="col-sm-9">
-            @Html.DisplayFor(model => model.Customer.Name)
-        </dd>
-
+      
         
         <dt class="col-sm-3">
-            @Html.DisplayNameFor(model => model.Door)
+            <th>Модель</th>
         </dt>
         <dd class="col-sm-9">
             @Html.DisplayFor(model => model.Door.Name)
@@ -134,7 +133,7 @@
 
    
     <div class="btn-container">
-        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary">Edit</a>
-        <a asp-action="Index" class="btn-back">Back to List</a>
+        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary">Изменить</a>
+        <a asp-action="Index" class="btn-back">Вернуться назад</a>
     </div>
 </div>

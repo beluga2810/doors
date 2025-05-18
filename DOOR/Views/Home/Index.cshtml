@@ -1,45 +1,195 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Главная";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Двери вашего дома</h1>
-    <p class="lead">Надежность, стиль и комфорт в каждой детали</p>
-</div>
-<div class="row mt-5">
-    <div class="col-md-4 text-center">
-        <h3>Качество</h3>
-        <p>Мы используем только лучшие материалы.</p>
-    </div>
-    <div class="col-md-4 text-center">
-        <h3>Доставка</h3>
-        <p>Быстрая доставка по всей Беларуси.</p>
-    </div>
-    <div class="col-md-4 text-center">
-        <h3>Гарантия</h3>
-        <p>Гарантия на всю продукцию — 5 лет.</p>
-    </div>
-</div>
-<div class="text-center">
-    <img id="myImage" src="./img/1.jpg" style="width: 200px" />
-</div>
-<div class="text-center mt-4">
-    <a href="/Doors" class="btn btn-primary btn-lg shadow">
-        Посмотреть каталог
-    </a>
-    <a href="/Contact" class="btn btn-outline-secondary btn-lg ml-3 shadow">
-        Связаться с нами
-    </a>
-</div>
-<script>
-    var image = document.getElementById("myImage");
+<style>
+    /* Основные стили */
+    body {
+        background-color: #f8f9fa;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
 
-    image.onmouseover = function () {
-        image.src = "./img/2.jpg";
-    };
+    .hero-section {
+        background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+        color: white;
+        padding: 3rem 0; /* Уменьшенный padding */
+        margin-bottom: 2rem; /* Уменьшенный отступ */
+        border-radius: 0 0 15px 15px; /* Уменьшенный радиус */
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* Более мягкая тень */
+    }
 
-    image.onmouseout = function () {
-        image.src = "./img/1.jpg";
-    };
+    .display-4 {
+        font-weight: 700;
+        margin-bottom: 0.5rem; /* Уменьшенный отступ */
+        text-shadow: 1px 1px 3px rgba(0,0,0,0.2); /* Более мягкая тень */
+        font-size: 2.5rem; /* Уменьшенный размер шрифта */
+    }
 
-</script>
+    .lead {
+        font-size: 1.25rem; /* Уменьшенный размер шрифта */
+        opacity: 0.9;
+    }
+
+    /* Стили для карточек навигации */
+    .nav-card {
+        background: white;
+        border-radius: 12px;
+        padding: 1.25rem; /* Уменьшенный padding */
+        margin-bottom: 1rem; /* Уменьшенный отступ */
+        box-shadow: 0 4px 8px rgba(0,0,0,0.05); /* Более мягкая тень */
+        transition: all 0.3s ease;
+        border-left: 4px solid #2575fc;
+        height: 100%;
+    }
+
+        .nav-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+            border-left: 4px solid #6a11cb;
+        }
+
+        .nav-card h4 {
+            color: #343a40;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-card a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .nav-card p {
+            margin-left: 34px; /* Отступ для выравнивания с иконкой */
+            color: #6c757d;
+            margin-bottom: 0;
+        }
+
+    /* Иконки для карточек */
+    .nav-icon {
+        font-size: 1.5rem;
+        color: #2575fc;
+    }
+
+    /* Секция с карточками навигации */
+    .navigation-section {
+        padding: 2rem 0; /* Уменьшенный padding */
+        background-color: white;
+        border-radius: 15px; /* Уменьшенный радиус */
+        margin: 2rem 0; /* Уменьшенный отступ */
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05); /* Более мягкая тень */
+    }
+
+    .section-title {
+        color: #343a40;
+        font-weight: 700;
+        margin-bottom: 1.5rem; /* Уменьшенный отступ */
+        position: relative;
+        display: inline-block;
+        font-size: 1.75rem; /* Уменьшенный размер шрифта */
+    }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 40%; /* Уменьшенная ширина */
+            height: 2px; /* Уменьшенная высота */
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            bottom: -8px; /* Поднята ближе к тексту */
+            left: 30%;
+        }
+</style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+
+<div class="hero-section">
+    <div class="container">
+        <div class="text-center">
+            <h1 class="display-4">Двери вашего дома</h1>
+            <p class="lead">Надежность, стиль и комфорт в каждой детали</p>
+        </div>
+    </div>
+</div>
+
+<div class="navigation-section">
+    <div class="container">
+        <h2 class="text-center section-title">Панель управления АСОИ</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="nav-card">
+                    <a href="/Doors">
+                        <h4><i class="fas fa-door-open nav-icon"></i> Учёт дверей</h4>
+                        <p>Управление ассортиментом дверей</p>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="nav-card">
+                    <a href="/Services">
+                        <h4><i class="fas fa-truck nav-icon"></i> Отгрузки</h4>
+                        <p>Управление процессом отгрузки </p>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="nav-card">
+                    <a href="/Categories">
+                        <h4><i class="fas fa-tags nav-icon"></i> Категории дверей</h4>
+                        <p>Классификация по категориям</p>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="nav-card">
+                    <a href="/Departments">
+                        <h4><i class="fas fa-store nav-icon"></i> Точки продаж</h4>
+                        <p>Управление торговыми точками и филиалами</p>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="nav-card">
+                    <a href="/Employees">
+                        <h4><i class="fas fa-users nav-icon"></i> Сотрудники</h4>
+                        <p>Управление персоналом компании</p>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="nav-card">
+                    <a href="/Orders">
+                        <h4><i class="fas fa-clipboard-list nav-icon"></i> Заказы</h4>
+                        <p>Обработка заказов клиентов</p>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="nav-card">
+                    <a href="/Suppliers">
+                        <h4><i class="fas fa-boxes nav-icon"></i> Поставщики</h4>
+                        <p>База поставщиков</p>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="nav-card">
+                    <a href="/Customers">
+                        <h4><i class="fas fa-user-tie nav-icon"></i> Заказчики</h4>
+                        <p>База клиентов</p>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="nav-card">
+                    <a href="/Home/Privacy">
+                        <h4><i class="fas fa-shield-alt nav-icon"></i> Политика конфиденциальности</h4>
+                        <p>Ознакомьтесь с нашей политикой</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

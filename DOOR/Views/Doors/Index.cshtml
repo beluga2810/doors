@@ -15,7 +15,7 @@
     }
 
     .table {
-        width: 100%;
+        width: 1500px;
         border-collapse: collapse;
         margin: 20px 0;
         font-size: 1em;
@@ -91,11 +91,11 @@
 </style>
 
 
-    <h1>Doors</h1>
+    <h1>Учёт дверей</h1>
 
     <p>
         <a asp-action="Create" class="btn btn-dark mt-2">
-            <i class="fas fa-plus"></i> Create New
+            <i class="fas fa-plus"></i> Создать
         </a>
     </p>
 
@@ -103,12 +103,12 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>@Html.DisplayNameFor(model => model.Name)</th>
-                    <th>@Html.DisplayNameFor(model => model.Material)</th>
-                    <th>@Html.DisplayNameFor(model => model.Price)</th>
-                    <th>@Html.DisplayNameFor(model => model.Description)</th>
-                    <th>@Html.DisplayNameFor(model => model.Category)</th>
-                    <th>@Html.DisplayNameFor(model => model.Supplier)</th>
+                    <th>Модель </th>
+                    <th>Материал</th>
+                    <th>Цена</th>
+                    <th>Описание</th>
+                    <th>Категория </th>
+                    <th>Поставщик</th>
                     <th></th>
                 </tr>
             </thead>
@@ -124,13 +124,13 @@
                         <td>@Html.DisplayFor(modelItem => item.Supplier.Name)</td>
                         <td>
                             <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.Id">
-                                <i class="fas fa-edit"></i> Edit
+                                <i class="fas fa-edit"></i> Изменить
                             </a>
                             <a asp-action="Details" class="btn btn-info" asp-route-id="@item.Id">
-                                <i class="fas fa-info-circle"></i> Details
+                                <i class="fas fa-info-circle"></i> Детали
                             </a>
                             <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id">
-                                <i class="fas fa-trash"></i> Delete
+                                <i class="fas fa-trash"></i> Удалить
                             </a>
                         </td>
                     </tr>
@@ -142,70 +142,3 @@
 
 
 
-@* @model IEnumerable<DOOR.Models.Door>
-
-@{
-    ViewData["Title"] = "Index";
-}
-
-<h1>Doors</h1>
-
-<p>
-    <a asp-action="Create" class="btn btn-dark mt-2">Create New</a>
-</p>
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Material)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Category)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Supplier)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Material)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Price)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Category.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Supplier.Name)
-                </td>
-                <td>
-                    <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.Id">Edit</a>
-                    <a asp-action="Details" class="btn btn-info" asp-route-id="@item.Id">Details</a>
-                    <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id">Delete</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table> *@

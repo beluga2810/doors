@@ -96,46 +96,41 @@
     }
 </style>
 
-<h1>Details</h1>
+<h1>Детали</h1>
 
 <div class="details-container">
    
-    <h4 style="font-size: 24px; color: #000; text-align: center;">Service</h4>
+    <h4 style="font-size: 24px; color: #000; text-align: center;">Отгрузки</h4>
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
+            <label class="control-label">Модель</label>
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Name)
         </dd>
         <dt class="col-sm-2">
-            <a class="control-label">Service Status </a>
+            <a class="control-label">Статус отгрузки </a>
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Description)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Price)
+            <label class="control-label">Цена</label>
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Price)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Employee)
+            <label class="control-label">Сотрудник</label>
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Employee.Name)
         </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Door)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Door.Name)
-        </dd>
+   
     </dl>
 
     <div class="btn-container">
-        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn-edit">Edit</a>
-        <a asp-action="Index" class="btn-back">Back to List</a>
+        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn-edit">Изменить</a>
+        <a asp-action="Index" class="btn-back">Вернуться назад</a>
     </div>
 </div>

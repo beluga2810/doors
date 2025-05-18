@@ -141,10 +141,10 @@
         }
 </style>
 
-<h1>Category</h1>
+<h1>Категории дверей</h1>
 
 <p>
-    <a asp-action="Create" class="btn btn-dark mt-2">Create New</a>
+    <a asp-action="Create" class="btn btn-dark mt-2">Создать</a>
 </p>
 
 <form asp-action="GetDoorsByCategoryName" method="get" class="d-flex">
@@ -163,7 +163,7 @@
     <table class="table mt-2">
         <thead>
             <tr>
-                <th>Name</th>
+                <th>Категория</th>
             </tr>
         </thead>
         <tbody>
@@ -180,7 +180,7 @@
 <table class="table">
     <thead>
         <tr>
-            <th>@Html.DisplayNameFor(model => model.Name)</th>
+            <th>Категория</th>
             <th></th>
         </tr>
     </thead>
@@ -190,9 +190,9 @@
             <tr>
                 <td>@Html.DisplayFor(modelItem => item.Name)</td>
                 <td>
-                    <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.Id">Edit</a>
-                    <a asp-action="Details" class="btn btn-info" asp-route-id="@item.Id">Details</a>
-                    <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id">Delete</a>
+                    <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.Id">Изменить</a>
+                    <a asp-action="Details" class="btn btn-info" asp-route-id="@item.Id">Детали</a>
+                    <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id">Удалить</a>
                 </td>
             </tr>
         }

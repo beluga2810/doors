@@ -111,52 +111,47 @@
     }
 </style>
 
-<h1>Delete</h1>
+<h1>Удаление</h1>
 
 <div class="delete-container">
-    <h3>Are you sure you want to delete this?</h3>
+    <h3>Вы уверены, что хотите это удалить?</h3>
     
-    <h4 style="font-size: 24px; color: #000;">Service</h4>
+    <h4 style="font-size: 24px; color: #000;">Отгрузки</h4>
 
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
+            <label class="control-label">Модель</label>
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Name)
         </dd>
         <dt class="col-sm-2">
-            <a class="control-label">Service Status </a>
+            <a class="control-label">Статус отгрузки </a>
         </dt>
         <dd class="col-sm-10">
             
             @Html.DisplayFor(model => model.Description)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Price)
+            <label class="control-label">Цена</label>
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Price)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Employee)
+            <label class="control-label">Сотрудник</label>
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Employee.Name)
         </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Door)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Door.Name)
-        </dd>
+       
     </dl>
 
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
         <div class="btn-container">
-            <input type="submit" value="Delete" class="btn-delete" />
-            <a asp-action="Index" class="btn-back">Back to List</a>
+            <input type="submit" value="Удалить" class="btn-delete" />
+            <a asp-action="Index" class="btn-back">Вернуться назад</a>
         </div>
     </form>
 </div>

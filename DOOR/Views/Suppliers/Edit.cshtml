@@ -102,40 +102,40 @@
     }
 </style>
 
-<h1>Edit</h1>
+<h1>Изменение</h1>
 
 
 <div class="form-container">
-    <h4 style="font-size: 24px; color: #000;">Supplier</h4>
+    <h4 style="font-size: 24px; color: #000;">Поставщики</h4>
     <form asp-action="Edit">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <input type="hidden" asp-for="Id" />
 
        
         <div class="form-group">
-            <label asp-for="Name" class="control-label"></label>
+            <th>Имя</th>
             <input asp-for="Name" class="form-control" />
             <span asp-validation-for="Name" class="text-danger"></span>
         </div>
 
         
         <div class="form-group">
-            <label asp-for="Address" class="control-label"></label>
+            <th>Адрес</th>
             <input asp-for="Address" class="form-control" />
             <span asp-validation-for="Address" class="text-danger"></span>
         </div>
 
   
         <div class="form-group">
-            <label asp-for="ContactNumber" class="control-label"></label>
+            <th>Номер телефона</th>
             <input asp-for="ContactNumber" class="form-control" />
             <span asp-validation-for="ContactNumber" class="text-danger"></span>
         </div>
 
         
         <div class="btn-container">
-            <input type="submit" value="Save" class="btn btn-primary" />
-            <a asp-action="Index" class="btn-back">Back to List</a>
+            <input type="submit" value="Сохранить" class="btn btn-primary" />
+            <a asp-action="Index" class="btn-back">Вернуться назад</a>
         </div>
     </form>
 </div>

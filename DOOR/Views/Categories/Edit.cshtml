@@ -109,25 +109,25 @@
     }
 </style>
 
-<h1>Edit</h1>
+<h1>Изменение</h1>
 
 
 
 <div class="form-container">
-    <h4 style="font-size: 24px; color: #000; text-align: center;">Category</h4>
+    <h4 style="font-size: 24px; color: #000; text-align: center;">Категории дверей</h4>
     <form asp-action="Edit">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <input type="hidden" asp-for="Id" />
 
         <div class="form-group">
-            <label asp-for="Name" class="control-label"></label>
+            <th>Категория</th>
             <input asp-for="Name" class="form-control" />
             <span asp-validation-for="Name" class="text-danger"></span>
         </div>
 
         <div class="btn-container">
-            <input type="submit" value="Save" class="btn btn-primary" />
-            <a asp-action="Index" class="btn-back">Back to List</a>
+            <input type="submit" value="Сохранить" class="btn btn-primary" />
+            <a asp-action="Index" class="btn-back">Вернуться назад</a>
         </div>
     </form>
 </div>

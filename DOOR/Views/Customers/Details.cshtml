@@ -83,15 +83,15 @@
     }
 </style>
 
-<h1>Details</h1>
+<h1>Детали</h1>
 
 <div class="data-container">
-    <h4 style="font-size: 24px; color: #000;">Customer</h4>
+    <h4 style="font-size: 24px; color: #000;">Заказчики</h4>
    
     <dl class="row">
         
         <dt class="col-sm-3">
-            @Html.DisplayNameFor(model => model.Name)
+            <th>Имя</th>
         </dt>
         <dd class="col-sm-9">
             @Html.DisplayFor(model => model.Name)
@@ -99,7 +99,7 @@
 
       
         <dt class="col-sm-3">
-            @Html.DisplayNameFor(model => model.Address)
+            <th>Адрес</th>
         </dt>
         <dd class="col-sm-9">
             @Html.DisplayFor(model => model.Address)
@@ -107,7 +107,7 @@
 
      
         <dt class="col-sm-3">
-            @Html.DisplayNameFor(model => model.Email)
+            <th>Почта</th>
         </dt>
         <dd class="col-sm-9">
             @Html.DisplayFor(model => model.Email)
@@ -116,7 +116,7 @@
 
    
     <div class="btn-container">
-        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary">Edit</a>
-        <a asp-action="Index" class="btn-back">Back to List</a>
+        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary">Изменить</a>
+        <a asp-action="Index" class="btn-back">Вернуться назад</a>
     </div>
 </div>

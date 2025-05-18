@@ -96,7 +96,7 @@
 
 
     .table {
-        width: 100%;
+        width: 1500px;
         border-collapse: collapse;
         margin-top: 20px;
         font-size: 1rem;
@@ -158,38 +158,40 @@
     }
 </style>
 
-<h1>Orders</h1>
+<h1>Заказы</h1>
 
 
 <div class="description">
     <p>Заказы за определенный срок</p>
 </div>
 
+
 <form asp-action="GetOrdersByDateRange" method="get" class="d-flex">
     <div class="form-group">
-        <label for="startDate">Start Date:</label>
+        <label for="startDate">Начальная дата:</label>
         <input type="date" name="startDate" class="form-control" required>
     </div>
     <div class="form-group ms-2">
-        <label for="endDate">End Date:</label>
+        <label for="endDate">Конечная дата:</label>
         <input type="date" name="endDate" class="form-control" required>
     </div>
-    <button type="submit" class="btn btn-primary ms-2">Get</button>
+    <button type="submit" class="btn btn-primary ms-2">Получить</button>
 </form>
 
 
 <p class="create-button">
-    <a asp-action="Create" class="btn btn-dark">Create New</a>
+    <a asp-action="Create" class="btn btn-dark">Создать</a>
 </p>
 
 <table class="table">
     <thead>
         <tr>
-            <th>@Html.DisplayNameFor(model => model.OrderDate)</th>
-            <th>@Html.DisplayNameFor(model => model.CustomerContactInfo)</th>
-            <th>@Html.DisplayNameFor(model => model.AdditionalProperties)</th>
-            <th>@Html.DisplayNameFor(model => model.Customer)</th>
-            <th>@Html.DisplayNameFor(model => model.Door)</th>
+            <th>Дата заказа</th>
+            <th>Имя заказчика</th>
+            <th>Контактные данные</th>
+            <th>Личные предпочтения</th>
+            
+            <th>Модель</th>
             <th></th>
         </tr>
     </thead>
@@ -198,14 +200,14 @@
         {
             <tr>
                 <td>@Html.DisplayFor(modelItem => item.OrderDate)</td>
+                <td>@Html.DisplayFor(modelItem => item.Customer.Name)</td>
                 <td>@Html.DisplayFor(modelItem => item.CustomerContactInfo)</td>
                 <td>@Html.DisplayFor(modelItem => item.AdditionalProperties)</td>
-                <td>@Html.DisplayFor(modelItem => item.Customer.Name)</td>
                 <td>@Html.DisplayFor(modelItem => item.Door.Name)</td>
                 <td>
-                    <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.Id">Edit</a>
-                    <a asp-action="Details" class="btn btn-info" asp-route-id="@item.Id">Details</a>
-                    <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id">Delete</a>
+                    <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.Id">Изменить</a>
+                    <a asp-action="Details" class="btn btn-info" asp-route-id="@item.Id">Детали</a>
+                    <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id">Удалить</a>
                 </td>
             </tr>
         }

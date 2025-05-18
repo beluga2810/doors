@@ -117,18 +117,18 @@
     }
 </style>
 
-<h1>Create</h1>
+<h1>Создание</h1>
 
 
 
 <div class="form-container">
-    <h4 style="font-size: 24px; color: #000;">Service</h4>
+    <h4 style="font-size: 24px; color: #000;">Отгрузки</h4>
     <form asp-action="Create">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
         
         <div class="form-group">
-            <label asp-for="Name" class="control-label"></label>
+            <label class="control-label">Модель</label>
             <input asp-for="Name" class="form-control" />
             <span asp-validation-for="Name" class="text-danger"></span>
         </div>
@@ -136,34 +136,31 @@
         
         <div class="form-group">
             @* <label asp-for="Description" class="control-label"></label> *@
-            <a class ="control-label">Service Status </a>
+            <a class ="control-label">Статус отгрузки </a>
             <input asp-for="Description" class="form-control" />
             <span asp-validation-for="Description" class="text-danger"></span>
         </div>
 
         
         <div class="form-group">
-            <label asp-for="Price" class="control-label"></label>
+            <label class="control-label">Цена</label>
             <input asp-for="Price" class="form-control" />
             <span asp-validation-for="Price" class="text-danger"></span>
         </div>
 
        
         <div class="form-group">
-            <label asp-for="Employee" class="control-label"></label>
+            <label class="control-label">Сотрудник</label>
+            
             <select asp-for="EmployeeId" class="form-control" asp-items="ViewBag.EmployeeId"></select>
         </div>
 
         
-        <div class="form-group">
-            <label asp-for="Door" class="control-label"></label>
-            <select asp-for="DoorId" class="form-control" asp-items="ViewBag.DoorId"></select>
-        </div>
-
+       
        
         <div class="btn-container">
-            <input type="submit" value="Create" class="btn btn-primary" />
-            <a asp-action="Index" class="btn-back">Back to List</a>
+            <input type="submit" value="Создать" class="btn btn-primary" />
+            <a asp-action="Index" class="btn-back">Вернуться назад</a>
         </div>
     </form>
 </div>

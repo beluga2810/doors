@@ -39,12 +39,14 @@
         font-weight: bold;
         color: #007bff;
         padding: 10px 0;
+       
     }
 
     dd.col-sm-10 {
         padding: 10px 0;
         color: #343a40;
         border-bottom: 1px solid #e9ecef;
+        padding-left: 60px;
     }
 
     .btn-edit {
@@ -88,46 +90,46 @@
     }
 </style>
 
-<h1>Details</h1>
+<h1>Детали</h1>
 
 <div class="details-container">
-    <h4 style="font-size: 24px; color: #000;">Employee</h4>
+    <h4 style="font-size: 24px; color: #000;">Сотрудники</h4>
     
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
+            <th>Имя</th>
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Name)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Position)
+            <th>Должность</th>
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Position)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Salary)
+            <th>Зарплата</th>
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Salary)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Department)
+            <th>Точка продаж</th>
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Department.Name)
         </dd>
         <dt class="col-sm-2">
-            Department Location
+            Местоположение
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Department.Location)
         </dd>
     </dl>
     <div class="btn-container">
-        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-edit">Edit</a>
-        <a asp-action="Index" class="btn btn-back">Back to List</a>
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-edit">Изменить</a>
+        <a asp-action="Index" class="btn btn-back">Вернуться назад</a>
     </div>
 </div>
 

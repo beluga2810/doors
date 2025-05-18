@@ -93,15 +93,15 @@
     }
 </style>
 
-<h1>Delete</h1>
-<h3>Are you sure you want to delete this?</h3>
+<h1>Удаление</h1>
+<h3>Вы уверены, что хотите это удалить?</h3>
 
 <div class="data-container">
-    <h4 style="font-size: 24px; color: #000; text-align: center;">Category</h4>
+    <h4 style="font-size: 24px; color: #000; text-align: center;">Категории дверей</h4>
     <hr />
     <dl class="row">
         <dt class="col-sm-3">
-            @Html.DisplayNameFor(model => model.Name)
+            <th>Категория</th>
         </dt>
         <dd class="col-sm-9">
             @Html.DisplayFor(model => model.Name)
@@ -112,8 +112,8 @@
     <div class="btn-container">
         <form asp-action="Delete">
             <input type="hidden" asp-for="Id" />
-            <input type="submit" value="Delete" class="btn btn-danger" />
+            <input type="submit" value="Удалить" class="btn btn-danger" />
         </form>
-        <a asp-action="Index" class="btn-back">Back to List</a>
+        <a asp-action="Index" class="btn-back">Вернуться назад</a>
     </div>
 </div>

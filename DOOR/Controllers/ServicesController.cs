@@ -20,16 +20,31 @@ namespace DOOR.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder)
         {
-            var appDbContext = _context.Services
+            var services = _context.Services
                 .Include(s => s.Door)
-                .Include(s => s.Employee);
+                .Include(s => s.Employee)
+                .AsQueryable();
+
+            
+            switch (sortOrder)
+            {
+                case "price_asc":
+                    services = services.OrderBy(s => s.Price);
+                    break;
+                case "price_desc":
+                    services = services.OrderByDescending(s => s.Price);
+                    break;
+                default:
+                    
+                    break;
+            }
 
             ViewBag.Employees = await _context.Employees.ToListAsync();
             ViewBag.Doors = await _context.Doors.ToListAsync();
 
-            return View(await appDbContext.ToListAsync());
+            return View(await services.ToListAsync());
         }
 
 
@@ -190,10 +205,10 @@ namespace DOOR.Controllers
             var table = new Table(5, true);
 
             table.AddHeaderCell("ID");
-            table.AddHeaderCell("Door");
-            table.AddHeaderCell("Service Status");
-            table.AddHeaderCell("Price");
-            table.AddHeaderCell("Employee");
+            table.AddHeaderCell("Модель");
+            table.AddHeaderCell("Статус отгрузки");
+            table.AddHeaderCell("Цена");
+            table.AddHeaderCell("Сотрудник");
             
 
             foreach (var service in services)

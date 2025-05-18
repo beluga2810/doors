@@ -72,44 +72,44 @@
     .table-container {
         max-width: 1200px;
         margin: 0 auto;
-        overflow-x: auto;
+        
     }
 
-    table.table {
-        width: 100%;
+    .table {
+        width: 1200px;
         border-collapse: collapse;
-        margin-top: 20px;
-        font-size: 1rem;
+        margin: 20px 0;
+        font-size: 1em;
+        min-width: 600px;
         border-radius: 10px;
         overflow: hidden;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
     }
 
-        table.table thead tr {
+        .table thead tr {
             background-color: #007bff;
             color: #ffffff;
             text-align: left;
         }
 
-        table.table th,
-        table.table td {
+        .table th,
+        .table td {
             padding: 12px 15px;
-            vertical-align: middle;
         }
 
-        table.table tbody tr {
+        .table tbody tr {
             border-bottom: 1px solid #dddddd;
         }
 
-            table.table tbody tr:nth-of-type(even) {
-                background-color: #f9f9f9;
+            .table tbody tr:nth-of-type(even) {
+                background-color: #f3f3f3;
             }
 
-            table.table tbody tr:last-of-type {
+            .table tbody tr:last-of-type {
                 border-bottom: 2px solid #007bff;
             }
 
-            table.table tbody tr:hover {
+            .table tbody tr:hover {
                 background-color: #f1f1f1;
             }
 
@@ -144,12 +144,12 @@
     }
 </style>
 
-<h1>Service</h1>
+<h1>Отгрузки</h1>
 
 
 <div class="controls-container">
   
-    <a asp-action="Create" class="btn btn-dark">Create New</a>
+    <a asp-action="Create" class="btn btn-dark">Создать</a>
 
     
     <form class="sort-form" asp-action="Index" method="get">
@@ -164,18 +164,49 @@
 
 
 <div class="table-container">
+    <form method="get" action="@Url.Action("GeneratePdfReport", "Services")" class="mb-4">
+        <div class="row g-3">
+            <div class="col-md-6">
+                <select name="employeeId" class="form-select">
+                    <option value="">Все сотрудники</option>
+                    @foreach (var employee in ViewBag.Employees as List<Employee>)
+                    {
+                        <option value="@employee.Id">@employee.Name</option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-6">
+                <select name="doorId" class="form-select">
+                    <option value="">Все двери</option>
+                    @foreach (var door in ViewBag.Doors as List<Door>)
+                    {
+                        <option value="@door.Id">@door.Name</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-12 text-center">
+                <button type="submit" class="btn btn-primary" style="width: auto; min-width: 200px;">
+                    <i class="bi bi-file-earmark-pdf"></i> Сгенерировать отчёт
+                </button>
+            </div>
+        </div>
+    </form>
     <table class="table">
         <thead>
             <tr>
-                <th>@Html.DisplayNameFor(model => model.Name)</th>
-                <th>Service Status</th>
-                <th>@Html.DisplayNameFor(model => model.Price)</th>
-                <th>@Html.DisplayNameFor(model => model.Employee)</th>
-                <th>@Html.DisplayNameFor(model => model.Door)</th>
-                <th></th>
+                <th>Модель </th>
+                <th>Статус отгрузки</th>
+                <th>Цена </th>
+                <th>Сотрудник </th>
+                <th> </th>
+             
+               
             </tr>
         </thead>
         <tbody>
+           
             @foreach (var item in Model)
             {
                 <tr>
@@ -183,45 +214,16 @@
                     <td>@Html.DisplayFor(modelItem => item.Description)</td>
                     <td>@Html.DisplayFor(modelItem => item.Price)</td>
                     <td>@Html.DisplayFor(modelItem => item.Employee.Name)</td>
-                    <td>@Html.DisplayFor(modelItem => item.Door.Name)</td>
                     <td>
-                        <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.Id">Edit</a>
-                        <a asp-action="Details" class="btn btn-info" asp-route-id="@item.Id">Details</a>
-                        <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id">Delete</a>
+                        <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.Id">Изменить</a>
+                        <a asp-action="Details" class="btn btn-info" asp-route-id="@item.Id">Детали</a>
+                        <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id">Удалить</a>
                     </td>
                 </tr>
 
             }
         </tbody>
     </table>
+
 </div>
 
-<form method="get" action="@Url.Action("GeneratePdfReport", "Services")" class="mb-4">
-    <div class="row g-3">
-        <div class="col-md-6">
-            <select name="employeeId" class="form-select">
-                <option value="">All Employees</option>
-                @foreach (var employee in ViewBag.Employees as List<Employee>)
-                {
-                    <option value="@employee.Id">@employee.Name</option>
-                }
-            </select>
-        </div>
-        <div class="col-md-6">
-            <select name="doorId" class="form-select">
-                <option value="">All Doors</option>
-                @foreach (var door in ViewBag.Doors as List<Door>)
-                {
-                    <option value="@door.Id">@door.Name</option>
-                }
-            </select>
-        </div>
-    </div>
-    <div class="row mt-3">
-        <div class="col-md-12 text-center">
-            <button type="submit" class="btn btn-primary" style="width: auto; min-width: 200px;">
-                <i class="bi bi-file-earmark-pdf"></i> Generate Report
-            </button>
-        </div>
-    </div>
-</form>

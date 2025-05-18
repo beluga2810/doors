@@ -102,41 +102,41 @@
     }
 </style>
 
-<h1>Edit</h1>
+<h1>Изменение</h1>
 
 <div class="form-container">
-    <h4 style="font-size: 24px; color: #000;">Employee</h4>
+    <h4 style="font-size: 24px; color: #000;">Сотрудники</h4>
     <form asp-action="Edit">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <input type="hidden" asp-for="Id" />
 
         <div class="form-group">
-            <label asp-for="Name" class="control-label"></label>
+            <th>Имя</th>
             <input asp-for="Name" class="form-control" />
             <span asp-validation-for="Name" class="text-danger"></span>
         </div>
 
         <div class="form-group">
-            <label asp-for="Position" class="control-label"></label>
+            <th>Должность</th>
             <input asp-for="Position" class="form-control" />
             <span asp-validation-for="Position" class="text-danger"></span>
         </div>
 
         <div class="form-group">
-            <label asp-for="Salary" class="control-label"></label>
+            <th>Зарплата</th>
             <input asp-for="Salary" class="form-control" />
             <span asp-validation-for="Salary" class="text-danger"></span>
         </div>
 
         <div class="form-group">
-            <label asp-for="Department" class="control-label"></label>
+            <th>Точка продаж</th>
             <select asp-for="DepartmentId" class="form-control" asp-items="ViewBag.DepartmentId"></select>
             <span asp-validation-for="DepartmentId" class="text-danger"></span>
         </div>
 
         <div class="btn-container">
-            <input type="submit" value="Save" class="btn btn-primary" />
-            <a asp-action="Index" class="btn btn-back">Back to List</a>
+            <input type="submit" value="Сохранить" class="btn btn-primary" />
+            <a asp-action="Index" class="btn btn-back">Вернуться назад</a>
         </div>
     </form>
 </div>

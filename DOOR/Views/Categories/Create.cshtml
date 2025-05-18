@@ -106,23 +106,23 @@
     }
 </style>
 
-<h1>Create</h1>
+<h1>Создание</h1>
 
 <div class="form-container">
-    <h4 style="font-size: 24px; color: #000; text-align: center;">Category</h4>
+    <h4 style="font-size: 24px; color: #000; text-align: center;">Категории дверей</h4>
     <form asp-action="Create">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
         <div class="form-group">
-            <label asp-for="Name" class="control-label"></label>
+            <th>Категория</th>
             <input asp-for="Name" class="form-control" />
             <span asp-validation-for="Name" class="text-danger"></span>
         </div>
 
         
         <div class="btn-container">
-            <input type="submit" value="Create" class="btn btn-primary" />
-            <a asp-action="Index" class="btn btn-back">Back to List</a>
+            <input type="submit" value="Создать" class="btn btn-primary" />
+            <a asp-action="Index" class="btn btn-back">Вернуться назад</a>
         </div>
     </form>
 </div>

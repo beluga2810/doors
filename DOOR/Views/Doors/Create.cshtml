@@ -108,54 +108,55 @@
     }
 </style>
 
-<h1>Create</h1>
+<h1>Создание</h1>
 
 <div class="form-container">
     
-    <h4 style="font-size: 24px; color: #000;">Door</h4>
+    <h4 style="font-size: 24px; color: #000;">Учёт дверей</h4>
     <form asp-action="Create">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
         <div class="form-group">
-            <label asp-for="Name" class="control-label"></label>
+            <label class="control-label">Модель</label>
             <input asp-for="Name" class="form-control" />
             <span asp-validation-for="Name" class="text-danger"></span>
         </div>
+        
 
         <div class="form-group">
-            <label asp-for="Material" class="control-label"></label>
+            <label class="control-label">Материал</label>
             <input asp-for="Material" class="form-control" />
             <span asp-validation-for="Material" class="text-danger"></span>
         </div>
 
         <div class="form-group">
-            <label asp-for="Price" class="control-label"></label>
+            <label class="control-label">Цена</label>
             <input asp-for="Price" class="form-control" />
             <span asp-validation-for="Price" class="text-danger"></span>
         </div>
 
         <div class="form-group">
-            <label asp-for="Description" class="control-label"></label>
+            <label class="control-label">Описание</label>
             <input asp-for="Description" class="form-control" />
             <span asp-validation-for="Description" class="text-danger"></span>
         </div>
 
         <div class="form-group">
-            <label asp-for="Category" class="control-label"></label>
+            <label class="control-label">Категория</label>
             <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
             <span asp-validation-for="CategoryId" class="text-danger"></span>
         </div>
 
         <div class="form-group">
-            <label asp-for="Supplier" class="control-label"></label>
+            <label class="control-label">Поставщик</label>
             <select asp-for="SupplierId" class="form-control" asp-items="ViewBag.SupplierId"></select>
             <span asp-validation-for="SupplierId" class="text-danger"></span>
         </div>
 
         
         <div class="btn-container">
-            <input type="submit" value="Create" class="btn btn-primary" />
-            <a asp-action="Index" class="btn btn-back">Back to List</a>
+            <input type="submit" value="Создать" class="btn btn-primary" />
+            <a asp-action="Index" class="btn btn-back">Вернуться назад</a>
         </div>
     </form>
 </div>
