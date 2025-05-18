@@ -17,7 +17,7 @@ using iText.Kernel.Font;
 
 namespace DOOR.Controllers
 {
-    public class EmployeesController : Controller
+    public class EmployeesController : BaseController 
     {
         private readonly AppDbContext _context;
 
