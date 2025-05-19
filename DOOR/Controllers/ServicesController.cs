@@ -8,6 +8,8 @@ using iText.Layout.Element;
 using iText.Layout.Properties;
 using iText.Layout;
 using iText.Kernel.Font;
+using Spire.Doc.Documents;
+using Spire.Doc;
 
 namespace DOOR.Controllers
 {
@@ -27,7 +29,7 @@ namespace DOOR.Controllers
                 .Include(s => s.Employee)
                 .AsQueryable();
 
-            
+
             switch (sortOrder)
             {
                 case "price_asc":
@@ -37,7 +39,7 @@ namespace DOOR.Controllers
                     services = services.OrderByDescending(s => s.Price);
                     break;
                 default:
-                    
+
                     break;
             }
 
@@ -168,12 +170,14 @@ namespace DOOR.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-       
+
         private bool ServiceExists(int id)
         {
             return (_context.Services?.Any(e => e.Id == id)).GetValueOrDefault();
         }
-        public async Task<IActionResult> GeneratePdfReport(int? employeeId, int? doorId)
+       
+
+        public async Task<IActionResult> GenerateReport(string format, int? employeeId, int? doorId)
         {
             var servicesQuery = _context.Services
                 .Include(s => s.Employee)
@@ -192,24 +196,42 @@ namespace DOOR.Controllers
 
             var services = await servicesQuery.ToListAsync();
 
+            byte[] fileBytes;
+
+            if (format == "pdf")
+            {
+                fileBytes = GeneratePdfBytes(services);
+                return File(fileBytes, "application/pdf", "ServicesReport.pdf");
+            }
+            else if (format == "word" || format == "docx")
+            {
+                fileBytes = GenerateWordBytes(services);
+                return File(fileBytes, "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "ServicesReport.docx");
+            }
+
+            return BadRequest("Неверный формат отчёта");
+        }
+       
+
+        private byte[] GeneratePdfBytes(List<Service> services)
+        {
             using var stream = new MemoryStream();
-            var pdfWriter = new PdfWriter(stream);
-            var pdfDocument = new PdfDocument(pdfWriter);
-            var document = new Document(pdfDocument);
-            var font = PdfFontFactory.CreateFont("C:\\Windows\\Fonts\\arial.ttf", "Identity-H");
+            var writer = new iText.Kernel.Pdf.PdfWriter(stream);
+            var pdf = new iText.Kernel.Pdf.PdfDocument(writer);
+            var document = new iText.Layout.Document(pdf);
+            var font = iText.Kernel.Font.PdfFontFactory.CreateFont("C:\\Windows\\Fonts\\arial.ttf", "Identity-H");
             document.SetFont(font);
 
-            document.Add(new Paragraph("Services Report")
-                .SetTextAlignment(TextAlignment.CENTER).SetFontSize(20));
+            document.Add(new iText.Layout.Element.Paragraph("Отчет об отгрузках")
+                .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER)
+                .SetFontSize(20));
 
-            var table = new Table(5, true);
-
+            var table = new iText.Layout.Element.Table(5, true);
             table.AddHeaderCell("ID");
             table.AddHeaderCell("Модель");
             table.AddHeaderCell("Статус отгрузки");
             table.AddHeaderCell("Цена");
             table.AddHeaderCell("Сотрудник");
-            
 
             foreach (var service in services)
             {
@@ -218,13 +240,100 @@ namespace DOOR.Controllers
                 table.AddCell(service.Description ?? "N/A");
                 table.AddCell(service.Price.ToString("C"));
                 table.AddCell(service.Employee?.Name ?? "N/A");
-                
             }
 
             document.Add(table);
+
+          
+            var totalCount = services.Count;
+            var totalPrice = services.Sum(s => s.Price);
+
+         
+            document.Add(new iText.Layout.Element.Paragraph($"Общее количество отгрузок: {totalCount}")
+                .SetFontSize(14)
+                .SetBold()
+                .SetTextAlignment(iText.Layout.Properties.TextAlignment.RIGHT)
+                .SetMarginTop(15));
+
+            document.Add(new iText.Layout.Element.Paragraph($"Общая стоимость: {totalPrice:N2} ₽")
+                .SetFontSize(14)
+                .SetBold()
+                .SetTextAlignment(iText.Layout.Properties.TextAlignment.RIGHT));
+
+            document.Add(new iText.Layout.Element.Paragraph($"Отчет сформирован: {DateTime.Now:dd.MM.yyyy HH:mm}")
+                .SetFontSize(12)
+                .SetItalic()
+                .SetTextAlignment(iText.Layout.Properties.TextAlignment.RIGHT));
+
             document.Close();
 
-            return File(stream.ToArray(), "application/pdf", "ServicesReport.pdf");
+            return stream.ToArray();
         }
+
+        
+        private byte[] GenerateWordBytes(List<Service> services)
+        {
+            try
+            {
+                var document = new Spire.Doc.Document();
+                var section = document.AddSection();
+
+                
+                var headerParagraph = section.AddParagraph();
+                headerParagraph.AppendText("Отчет об отгрузках").CharacterFormat.Bold = true;
+                headerParagraph.Format.HorizontalAlignment = Spire.Doc.Documents.HorizontalAlignment.Center;
+
+                
+                var table = section.AddTable(true);
+                table.ResetCells(1, 5); 
+
+                var headerRow = table.Rows[0];
+                headerRow.Cells[0].AddParagraph().AppendText("ID");
+                headerRow.Cells[1].AddParagraph().AppendText("Модель");
+                headerRow.Cells[2].AddParagraph().AppendText("Статус отгрузки");
+                headerRow.Cells[3].AddParagraph().AppendText("Цена");
+                headerRow.Cells[4].AddParagraph().AppendText("Сотрудник");
+
+                foreach (var service in services)
+                {
+                    var dataRow = table.AddRow();
+                    dataRow.Cells[0].AddParagraph().AppendText(service.Id.ToString());
+                    dataRow.Cells[1].AddParagraph().AppendText(service.Door?.Name ?? "N/A");
+                    dataRow.Cells[2].AddParagraph().AppendText(service.Description ?? "N/A");
+                    dataRow.Cells[3].AddParagraph().AppendText(service.Price.ToString("C"));
+                    dataRow.Cells[4].AddParagraph().AppendText(service.Employee?.Name ?? "N/A");
+                }
+
+              
+                var totalCount = services.Count;
+                var totalPrice = services.Sum(s => s.Price);
+
+               
+                var totalParagraph = section.AddParagraph();
+                totalParagraph.AppendText($"Общее количество отгрузок: {totalCount}")
+                    .CharacterFormat.Bold = true;
+
+                var totalPriceParagraph = section.AddParagraph();
+                totalPriceParagraph.AppendText($"Общая стоимость: {totalPrice:N2} ₽")
+                    .CharacterFormat.Bold = true;
+
+                var dateParagraph = section.AddParagraph();
+                dateParagraph.AppendText($"Отчет сформирован: {DateTime.Now:dd.MM.yyyy HH:mm}")
+                    .CharacterFormat.Italic = true;
+
+                
+                using var stream = new MemoryStream();
+                document.SaveToFile(stream, Spire.Doc.FileFormat.Docx2013);
+                return stream.ToArray();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка при генерации Word-отчета: {ex.Message}");
+                throw;
+            }
+
+        }
+
     }
+
 }

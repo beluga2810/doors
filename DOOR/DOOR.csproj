@@ -21,6 +21,7 @@
 		<PackageReference Include="NUnit" Version="4.1.0" />
 		<PackageReference Include="NUnit3TestAdapter" Version="4.5.0" />
 		<PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="7.0.0" />
+		<PackageReference Include="Spire.Docfor.NETStandard" Version="13.4.4" />
 	</ItemGroup>
 
 	<ItemGroup>

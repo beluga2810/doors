@@ -1,4 +1,5 @@
-﻿@model IEnumerable<DOOR.Models.Service>
+﻿
+@model IEnumerable<DOOR.Models.Service>
 @{
     ViewData["Title"] = "Index";
 }
@@ -164,35 +165,29 @@
 
 
 <div class="table-container">
-    <form method="get" action="@Url.Action("GeneratePdfReport", "Services")" class="mb-4">
-        <div class="row g-3">
-            <div class="col-md-6">
-                <select name="employeeId" class="form-select">
-                    <option value="">Все сотрудники</option>
-                    @foreach (var employee in ViewBag.Employees as List<Employee>)
-                    {
-                        <option value="@employee.Id">@employee.Name</option>
-                    }
-                </select>
-            </div>
-            <div class="col-md-6">
-                <select name="doorId" class="form-select">
-                    <option value="">Все двери</option>
-                    @foreach (var door in ViewBag.Doors as List<Door>)
-                    {
-                        <option value="@door.Id">@door.Name</option>
-                    }
-                </select>
-            </div>
+    <div>
+        <label>Выберите формат документа в котором будет сгенерирован отчёт:</label>
+        <select id="reportFormat" name="format" class="form-control">
+            <option value="pdf">PDF</option>
+            <option value="word">Word</option>
+        </select>
+        <div class="mt-3">
+            <a id="generateReportLink" href="#" class="btn btn-primary">
+                <i class="fas fa-file-download"></i> Скачать отчёт
+            </a>
         </div>
-        <div class="row mt-3">
-            <div class="col-md-12 text-center">
-                <button type="submit" class="btn btn-primary" style="width: auto; min-width: 200px;">
-                    <i class="bi bi-file-earmark-pdf"></i> Сгенерировать отчёт
-                </button>
-            </div>
-        </div>
-    </form>
+    </div>
+
+    @section Scripts {
+        <script>
+            document.getElementById('generateReportLink').addEventListener('click', function(e) {
+                e.preventDefault();
+                const format = document.getElementById('reportFormat').value;
+                this.href = '@Url.Action("GenerateReport")' + '?format=' + format;
+                window.location.href = this.href;
+            });
+        </script>
+    }
     <table class="table">
         <thead>
             <tr>
@@ -224,6 +219,6 @@
             }
         </tbody>
     </table>
-
+    
 </div>
 
