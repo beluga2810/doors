@@ -147,12 +147,9 @@
 
 <h1>Отгрузки</h1>
 
-
 <div class="controls-container">
-  
     <a asp-action="Create" class="btn btn-dark">Создать</a>
 
-    
     <form class="sort-form" asp-action="Index" method="get">
         <label for="sortOrder" class="form-label">Сортировать по:</label>
         <select name="sortOrder" id="sortOrder" class="form-select" onchange="this.form.submit()">
@@ -160,9 +157,18 @@
             <option value="price_asc">Цена (по возрастанию)</option>
             <option value="price_desc">Цена (по убыванию)</option>
         </select>
+
+        @if (Context.Request.Query["employeeId"].Any())
+        {
+            <input type="hidden" name="employeeId" value="@Context.Request.Query["employeeId"]" />
+        }
+
+        @if (Context.Request.Query["doorId"].Any())
+        {
+            <input type="hidden" name="doorId" value="@Context.Request.Query["doorId"]" />
+        }
     </form>
 </div>
-
 
 <div class="table-container">
     <div>
@@ -180,14 +186,45 @@
 
     @section Scripts {
         <script>
+            
+            document.addEventListener('DOMContentLoaded', function() {
+                const urlParams = new URLSearchParams(window.location.search);
+                const sortOrder = urlParams.get('sortOrder');
+
+                if (sortOrder) {
+                    document.getElementById('sortOrder').value = sortOrder;
+                }
+            });
+
+          
             document.getElementById('generateReportLink').addEventListener('click', function(e) {
                 e.preventDefault();
                 const format = document.getElementById('reportFormat').value;
-                this.href = '@Url.Action("GenerateReport")' + '?format=' + format;
-                window.location.href = this.href;
+                const sortOrder = document.getElementById('sortOrder').value;
+
+                let url = '@Url.Action("GenerateReport")' + '?format=' + format;
+
+                if (sortOrder) {
+                    url += '&sortOrder=' + encodeURIComponent(sortOrder);
+                }
+
+            @if (Context.Request.Query["employeeId"].Any())
+            {
+                @:url += '&employeeId=@Context.Request.Query["employeeId"]';
+            }
+
+            @if (Context.Request.Query["doorId"].Any())
+            {
+                @:url += '&doorId=@Context.Request.Query["doorId"]';
+            }
+
+                window.location.href = url;
             });
         </script>
     }
+
+   
+
     <table class="table">
         <thead>
             <tr>

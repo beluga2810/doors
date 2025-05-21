@@ -175,9 +175,9 @@ namespace DOOR.Controllers
         {
             return (_context.Services?.Any(e => e.Id == id)).GetValueOrDefault();
         }
-       
 
-        public async Task<IActionResult> GenerateReport(string format, int? employeeId, int? doorId)
+
+        public async Task<IActionResult> GenerateReport(string format, int? employeeId, int? doorId, string sortOrder = "")
         {
             var servicesQuery = _context.Services
                 .Include(s => s.Employee)
@@ -192,6 +192,20 @@ namespace DOOR.Controllers
             if (doorId.HasValue)
             {
                 servicesQuery = servicesQuery.Where(s => s.DoorId == doorId.Value);
+            }
+
+           
+            switch (sortOrder)
+            {
+                case "price_asc":
+                    servicesQuery = servicesQuery.OrderBy(s => s.Price);
+                    break;
+                case "price_desc":
+                    servicesQuery = servicesQuery.OrderByDescending(s => s.Price);
+                    break;
+                default:
+                    
+                    break;
             }
 
             var services = await servicesQuery.ToListAsync();
@@ -211,7 +225,7 @@ namespace DOOR.Controllers
 
             return BadRequest("Неверный формат отчёта");
         }
-       
+
 
         private byte[] GeneratePdfBytes(List<Service> services)
         {
