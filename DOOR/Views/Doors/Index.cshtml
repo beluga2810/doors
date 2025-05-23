@@ -98,6 +98,13 @@
             <i class="fas fa-plus"></i> Создать
         </a>
     </p>
+<div class="mb-3">
+    <strong>Всего дверей:</strong> @Model.Count()
+    @if (Model.Any())
+    {
+        <span>, <strong>Общая стоимость:</strong> @Model.Sum(d => d.Price).ToString("C")</span>
+    }
+</div>
 
 <div class="class=" table-responsive" style="max-width: 3000px; margin: 0 auto;">
         <table class="table">
