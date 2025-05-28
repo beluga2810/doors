@@ -88,6 +88,21 @@
         background-color: #dc3545;
         border: none;
     }
+
+    @@media (max-width: 768px) {
+        .table {
+            font-size: 0.9em;
+        }
+
+        .btn {
+            padding: 5px 10px;
+            font-size: 0.8em;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+        }
+    }
 </style>
 
 
@@ -98,12 +113,19 @@
             <i class="fas fa-plus"></i> Создать
         </a>
     </p>
-<div class="mb-3">
-    <strong>Всего дверей:</strong> @Model.Count()
+<div class="mb-3" style="display: flex; flex-direction: column; gap: 5px;">
+    <div>
+        <strong>Всего дверей:</strong> @Model.Count()
+    </div>
     @if (Model.Any())
     {
-        <span>, <strong>Общая стоимость:</strong> @Model.Sum(d => d.Price).ToString("C")</span>
+        <div>
+            <strong>Общая стоимость:</strong> @Model.Sum(d => d.Price).ToString("C")
+        </div>
     }
+</div>
+<div class="col-md-6">
+    <input type="text" id="searchInput" class="form-control" placeholder="Поиск по названию..." />
 </div>
 
 <div class="class=" table-responsive" style="max-width: 3000px; margin: 0 auto;">
@@ -145,7 +167,19 @@
             
         </table>
     </div>
+    @section Scripts {
+    <script>
+        
+        document.getElementById('searchInput').addEventListener('input', function() {
+            const searchValue = this.value.toLowerCase();
+            document.querySelectorAll('tbody tr').forEach(row => {
+                const name = row.cells[0].textContent.toLowerCase();
+                row.style.display = name.includes(searchValue) ? '' : 'none';
+            });
+        });
 
+    </script>
+    }
 
 
 
