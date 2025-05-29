@@ -141,12 +141,14 @@
         <option value="">Выберите заказчика</option>
         @foreach (var customer in Model)
         {
-            <option value="@customer.Name">@customer.Name</option>
+            <option value="@customer.Name"
+                    selected="@(customer.Name == ViewBag.SelectedCustomer ? "selected" : null)">
+                @customer.Name
+            </option>
         }
     </select>
     <button type="submit" class="btn btn-primary ms-2">Получить</button>
 </form>
-
 
 @if (ViewBag.Orders != null)
 {

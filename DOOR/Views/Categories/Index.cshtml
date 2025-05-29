@@ -152,7 +152,10 @@
         <option value="">Выберите категорию</option>
         @foreach (var category in Model)
         {
-            <option value="@category.Name">@category.Name</option>
+            <option value="@category.Name"
+                    selected="@(category.Name == ViewBag.SelectedCategory ? "selected" : null)">
+                @category.Name
+            </option>
         }
     </select>
     <button type="submit" class="btn btn-primary ms-2">Получить</button>

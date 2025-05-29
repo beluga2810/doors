@@ -27,10 +27,11 @@ namespace DOOR.Controllers
 
         public async Task<IActionResult> GetDoorsBySupplier(string sName)
         {
+            ViewBag.SelectedSupplier = sName;
             var doors = await _context.Doors
                 .Where(doors => doors.Supplier.Name == sName)
                 .ToListAsync();
-
+           
             ViewBag.Doors = doors;
 
             return View("Index", await _context.Suppliers.ToListAsync());

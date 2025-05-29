@@ -27,9 +27,20 @@ namespace DOOR.Controllers
 
         public async Task<IActionResult> GetOrdersByDateRange(DateTime startDate, DateTime endDate)
         {
+            // Фильтруем заказы по диапазону дат
             var orders = await _context.Orders
                 .Where(order => order.OrderDate >= startDate && order.OrderDate <= endDate)
+                .Include(o => o.Customer)
+                .Include(o => o.Door)
                 .ToListAsync();
+
+            // Заполняем ViewData для Customer и Door, чтобы выпадающие списки работали
+            ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Name");
+            ViewData["DoorId"] = new SelectList(_context.Doors, "Id", "Name");
+
+            // Передаем даты обратно, чтобы они сохранялись в форме
+            ViewBag.StartDate = startDate.ToString("yyyy-MM-dd");
+            ViewBag.EndDate = endDate.ToString("yyyy-MM-dd");
 
             return View("Index", orders);
         }

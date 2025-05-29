@@ -38,7 +38,7 @@ namespace DOOR.Controllers
                 .ToListAsync();
 
             ViewBag.Services = services;
-
+            ViewBag.SelectedEmployee = eName;
             var employees = await _context.Employees.ToListAsync();
 
             return View("Index", employees);

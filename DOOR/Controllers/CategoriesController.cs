@@ -33,7 +33,7 @@ namespace DOOR.Controllers
                 .ToListAsync();
 
             ViewBag.Doors = doors;
-
+            ViewBag.SelectedCategory = categoryName;
             var categories = await _context.Categories.ToListAsync();
 
             return View("Index", categories);

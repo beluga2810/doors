@@ -21,6 +21,7 @@ namespace DOOR.Controllers
 
         public async Task<IActionResult> Index()
         {
+
             return _context.Customers != null ?
                         View(await _context.Customers.ToListAsync()) :
                         Problem("Entity set 'AppDbContext.Customers'  is null.");
@@ -28,6 +29,7 @@ namespace DOOR.Controllers
 
         public async Task<IActionResult> GetOrdersByCustomerName(string cName)
         {
+            ViewBag.SelectedCustomer = cName;
             var orders = await _context.Orders
                 .Include(o => o.Door)
                 .Where(orders => orders.Customer.Name == cName)

@@ -169,15 +169,18 @@
 <form asp-action="GetOrdersByDateRange" method="get" class="d-flex">
     <div class="form-group">
         <label for="startDate">Начальная дата:</label>
-        <input type="date" name="startDate" class="form-control" required>
+        <input type="date" name="startDate" class="form-control"
+               value="@Context.Request.Query["startDate"]"
+               required />
     </div>
     <div class="form-group ms-2">
         <label for="endDate">Конечная дата:</label>
-        <input type="date" name="endDate" class="form-control" required>
+        <input type="date" name="endDate" class="form-control"
+               value="@Context.Request.Query["endDate"]"
+               required />
     </div>
     <button type="submit" class="btn btn-primary ms-2">Получить</button>
 </form>
-
 
 <p class="create-button">
     <a asp-action="Create" class="btn btn-dark">Создать</a>
