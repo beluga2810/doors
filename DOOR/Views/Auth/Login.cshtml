@@ -1,99 +1,309 @@
 ﻿@{
+    ViewData["HideHeader"] = true;
     ViewData["Title"] = "Вход";
 }
 
 <style>
-   
-    body {
-        background-color: #f8f9fa;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-       
+    :root {
+        --primary-color: #4361ee;
+        --primary-hover: #3a56d4;
+        --error-color: #ef233c;
+        --text-color: #2b2d42;
+        --light-gray: #edf2f4;
+        --transition: all 0.3s ease;
     }
 
-    .auth-container {
-        max-width: 400px;
-        margin: 50px auto;
-        padding: 30px;
+    body {
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        color: var(--text-color);
+        line-height: 1.6;
+    }
+
+    .auth-wrapper {
+        display: flex;
+        width: 100%;
+        max-width: 900px;
         background: white;
-        border-radius: 5px;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        margin: auto;
+    }
+
+    .auth-info {
+        background: var(--primary-color);
+        color: white;
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 20px;
+        min-width: 300px;
+        background: linear-gradient(135deg, #4361ee 0%, #6a11cb 100%);
+    }
+
+        .auth-info h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .auth-info p {
+            font-size: 15px;
+            opacity: 0.9;
+            margin-bottom: 0;
+        }
+
+    .auth-form {
+        padding: 40px;
+        width: 100%;
+    }
+
+    .auth-header {
+        text-align: center;
+        margin-bottom: 32px;
+    }
+
+    .auth-logo {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 16px;
+        border-radius: 50%;
+        background: var(--primary-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 28px;
+        font-weight: bold;
+        font-family: 'Segoe UI';
     }
 
     h2 {
+        font-size: 24px;
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: var(--text-color);
+    }
+
+    .auth-subtitle {
+        color: #6c757d;
+        font-size: 14px;
         text-align: center;
-        margin-bottom: 25px;
-        color: #333;
     }
 
     .form-group {
-        margin-bottom: 20px;
+        margin-bottom: 24px;
+        position: relative;
     }
 
     label {
         display: block;
         margin-bottom: 8px;
         font-weight: 500;
-        color: #555;
+        font-size: 14px;
     }
 
     .form-control {
         width: 100%;
-        padding: 10px 15px;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        font-size: 16px;
-        transition: border-color 0.15s;
+        padding: 12px 16px;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        font-size: 15px;
+        transition: var(--transition);
+        background-color: #fcfcfc;
     }
 
         .form-control:focus {
-            border-color: #007bff;
-            outline: 0;
-            box-shadow: 0 0 0 2px rgba(0,123,255,0.1);
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.15);
+            background-color: white;
+        }
+
+    .password-container {
+        position: relative;
+    }
+
+    .toggle-password {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: #adb5bd;
+        transition: var(--transition);
+    }
+
+        .toggle-password:hover {
+            color: var(--text-color);
         }
 
     .btn-primary {
         width: 100%;
-        padding: 10px;
-        background-color: #007bff;
+        padding: 14px;
+        background-color: var(--primary-color);
         border: none;
-        border-radius: 4px;
+        border-radius: 8px;
         color: white;
-        font-size: 16px;
+        font-size: 15px;
+        font-weight: 500;
         cursor: pointer;
-        transition: background-color 0.15s;
+        transition: var(--transition);
+        margin-top: 8px;
     }
 
         .btn-primary:hover {
-            background-color: #0069d9;
+            background-color: var(--primary-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(67, 97, 238, 0.2);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
         }
 
     .text-danger {
-        color: #dc3545;
-        margin-top: 15px;
-        text-align: center;
+        color: var(--error-color);
         font-size: 14px;
+        text-align: center;
+        display: block;
+        animation: shake 0.5s;
     }
+
+    @@keyframes shake {
+        0%, 100% {
+            transform: translateX(0);
+        }
+
+        20%, 60% {
+            transform: translateX(-5px);
+        }
+
+        40%, 80% {
+            transform: translateX(5px);
+        }
+    }
+
+    .auth-footer {
+        text-align: center;
+        margin-top: 24px;
+        font-size: 14px;
+        color: #6c757d;
+    }
+
+    .auth-link {
+        color: white;
+        text-decoration: underline;
+        font-weight: 500;
+    }
+
+        .auth-link:hover {
+            text-decoration: none;
+        }
+
+    @@media (max-width: 768px) {
+        .auth-wrapper {
+            flex-direction: column;
+        }
+
+        .auth-info {
+            min-width: 100%;
+            border-bottom: 1px solid #fff;
+        }
+
+        .auth-form {
+            padding: 30px 20px;
+        }
+    }
+
+    .auth-logo {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: white;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+        .auth-logo img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
 </style>
 
-<div class="auth-container">
-    <h2>Авторизация</h2>
+<div class="auth-wrapper">
+    
+    <div class="auth-info">
+        <div class="auth-logo">
+            <img src="~/images/logo.png" alt="Логотип DOOR" />
+        </div>
+        <h3>Добро пожаловать </h3>
+        <p>Автоматизированная система обработки информации</p>
+        <p>Авторизуйтесь, чтобы получить доступ к функциям системы</p>
+    </div>
 
-    <form method="post">
-        <div class="form-group">
-            <label>Имя пользователя</label>
-            <input type="text" name="username" class="form-control" required />
+    
+    <div class="auth-form">
+        <div class="auth-header">
+            <h2>Вход</h2>
+            <p class="auth-subtitle">Введите свои учетные данные для входа</p>
         </div>
 
-        <div class="form-group">
-            <label>Пароль</label>
-            <input type="password" name="password" class="form-control" required />
-        </div>
+        <form method="post">
+            <div class="form-group">
+                <label for="username">Имя пользователя</label>
+                <input type="text" id="username" name="username" class="form-control" placeholder="Введите имя пользователя" required />
+            </div>
 
-        <button type="submit" class="btn btn-primary">Войти</button>
+            <div class="form-group">
+                <label for="password">Пароль</label>
+                <div class="password-container">
+                    <input type="password" id="password" name="password" class="form-control" placeholder="Введите пароль" required />
+                    <i class="toggle-password fas fa-eye" onclick="togglePasswordVisibility()"></i>
+                </div>
+            </div>
 
-        @if (ViewBag.Error != null)
-        {
-            <p class="text-danger">@ViewBag.Error</p>
-        }
-    </form>
+            <button type="submit" class="btn btn-primary">Войти</button>
+
+            @if (ViewBag.Error != null)
+            {
+                <span class="text-danger">@ViewBag.Error</span>
+            }
+        </form>
+
+       
+    </div>
 </div>
+
+@section Scripts {
+    <script>
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById('password');
+            const icon = document.querySelector('.toggle-password');
+
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+    </script>
+
+    <!-- Font Awesome для иконок -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css " />
+}
