@@ -227,14 +227,14 @@
     @section Scripts {
         <script>
             document.addEventListener('DOMContentLoaded', function() {
-                // Установка текущего значения сортировки
+                
                 const urlParams = new URLSearchParams(window.location.search);
                 const sortOrder = urlParams.get('sortOrder');
                 if (sortOrder) {
                     document.getElementById('sortOrder').value = sortOrder;
                 }
 
-                // Обработчик для генерации отчёта
+                
                 document.getElementById('generateReportLink').addEventListener('click', function(e) {
                     e.preventDefault();
                     const format = document.getElementById('reportFormat').value;

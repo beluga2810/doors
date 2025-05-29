@@ -240,8 +240,8 @@ namespace DOOR.Controllers
                 .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER)
                 .SetFontSize(20));
 
-            var table = new iText.Layout.Element.Table(5, true);
-            table.AddHeaderCell("ID");
+            var table = new iText.Layout.Element.Table(4, true);
+            
             table.AddHeaderCell("Модель");
             table.AddHeaderCell("Статус отгрузки");
             table.AddHeaderCell("Цена");
@@ -249,7 +249,7 @@ namespace DOOR.Controllers
 
             foreach (var service in services)
             {
-                table.AddCell(service.Id.ToString());
+                
                 table.AddCell(service.Door?.Name ?? "N/A");
                 table.AddCell(service.Description ?? "N/A");
                 table.AddCell(service.Price.ToString("C"));
@@ -299,23 +299,23 @@ namespace DOOR.Controllers
 
                 
                 var table = section.AddTable(true);
-                table.ResetCells(1, 5); 
+                table.ResetCells(1, 4); 
 
                 var headerRow = table.Rows[0];
-                headerRow.Cells[0].AddParagraph().AppendText("ID");
-                headerRow.Cells[1].AddParagraph().AppendText("Модель");
-                headerRow.Cells[2].AddParagraph().AppendText("Статус отгрузки");
-                headerRow.Cells[3].AddParagraph().AppendText("Цена");
-                headerRow.Cells[4].AddParagraph().AppendText("Сотрудник");
+               
+                headerRow.Cells[0].AddParagraph().AppendText("Модель");
+                headerRow.Cells[1].AddParagraph().AppendText("Статус отгрузки");
+                headerRow.Cells[2].AddParagraph().AppendText("Цена");
+                headerRow.Cells[3].AddParagraph().AppendText("Сотрудник");
 
                 foreach (var service in services)
                 {
                     var dataRow = table.AddRow();
-                    dataRow.Cells[0].AddParagraph().AppendText(service.Id.ToString());
-                    dataRow.Cells[1].AddParagraph().AppendText(service.Door?.Name ?? "N/A");
-                    dataRow.Cells[2].AddParagraph().AppendText(service.Description ?? "N/A");
-                    dataRow.Cells[3].AddParagraph().AppendText(service.Price.ToString("C"));
-                    dataRow.Cells[4].AddParagraph().AppendText(service.Employee?.Name ?? "N/A");
+                    
+                    dataRow.Cells[0].AddParagraph().AppendText(service.Door?.Name ?? "N/A");
+                    dataRow.Cells[1].AddParagraph().AppendText(service.Description ?? "N/A");
+                    dataRow.Cells[2].AddParagraph().AppendText(service.Price.ToString("C"));
+                    dataRow.Cells[3].AddParagraph().AppendText(service.Employee?.Name ?? "N/A");
                 }
 
               
